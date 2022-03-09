@@ -17,6 +17,7 @@ Route::prefix('admin')->group(function()   {
         Route::get('/', [DashboardController::class,'index'])->name('admin.home');
         Route::get('restaurant/add', [RestaurantController::class,'create'])->name('restaurant.add');  
         Route::post('restaurant/store', [RestaurantController::class,'store'])->name('restaurant.insert');
+        Route::post('restaurant/', [RestaurantController::class,'index'])->name('restaurant.index');
     // });
 });
 
