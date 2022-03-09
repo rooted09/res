@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Restaurant extends Model
 {
     use HasFactory;
+    protected $fillable = ['name','adresse','tele'];
 
     /**
      * Get the user that owns the Restaurant

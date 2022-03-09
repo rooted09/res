@@ -1,7 +1,9 @@
+@extends('backoffice.layouts.app')
+@section('content')
+<div class="container">
+<a class="btn btn-success mt-5 mb-5 ml-auto" href="{{route('client.add')}}">Ajouter</a>
 
-<center>
-<table>
-    <head>
+<table class="table table-striped table-bordered text-center">
     
         <tr>
             
@@ -9,11 +11,10 @@
             <th>Nom</th>
             <th>Prenom  </th>
             <th>Telephone  </th>
-            <th>Login User  </th>
+            <th>Action</th>
 
         </tr>
-   </head>
-   <tbody>
+   
    @foreach($clients as $client)  
            <tr>
                <td>{{$client->id}}</td>
@@ -28,11 +29,13 @@
         
      </tr>  
      @endforeach
-  <tbody>
+
 
 </table>
-<a class="btn btn-secondary" href="{{route('client.add')}}">Ajouter</a>
 
 
 
-</center>
+@endsection
+
+    
+</div>

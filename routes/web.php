@@ -4,10 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
-
-
+use App\Http\Controllers\RestaurantController;
 // Admin Controllers
 use App\Http\Controllers\Backoffice\DashboardController;
+
 
 // begin admin routes
 Route::prefix('admin')->group(function()   {
@@ -17,7 +17,7 @@ Route::prefix('admin')->group(function()   {
 
     Route::middleware('auth:admin')->group(function()   {
         Route::get('/', [DashboardController::class,'index'])->name('admin.home');
-        //Clients routes
+        // clients routes
         Route::prefix('client')->name('client.')->group(function(){
             Route::get('',[ClientController::class,'index'])->name('index');
             Route::get('add',[ClientController::class,'create'])->name('add');
@@ -26,6 +26,12 @@ Route::prefix('admin')->group(function()   {
             Route::post('update/{id}',[ClientController::class,'update'])->name('update');
             Route::get('delete/{id}',[ClientController::class,'destroy'])->name('delete');
         });
+        
+    Route::get('restaurant/add', [RestaurantController::class,'create'])->name('restaurant.add');  
+    Route::post('restaurant/store', [RestaurantController::class,'store'])->name('restaurant.insert');
+    Route::get('restaurant/', [RestaurantController::class,'index'])->name('restaurant.index');
+    Route::get('/edit/{id}',[RestaurantController::class,'edit'])->name('edit.client');
+    Route::get('/update/{id}',[RestaurantController::class,'update'])->name('update.client');
     });
 });
 // end admin routes

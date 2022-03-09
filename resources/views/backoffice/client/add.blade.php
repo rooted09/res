@@ -1,3 +1,5 @@
+@extends('backoffice.layouts.app')
+@section('content')
 <form action="{{route('client.store')}}" method="post">
     @csrf
 <div class="mb-3">
@@ -15,7 +17,9 @@
 </div>
 <div>
   
-  <input type="submit" class="form-control" name="btn" value="ajouter">
+  <input type="submit" class="btn btn-success" name="btn" value="ajouter">
 </div>
 </form>
 
+    
+@endsection

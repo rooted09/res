@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
-use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\UpdateClientRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
