@@ -82,9 +82,16 @@ class RestaurantController extends Controller
      * @param  \App\Models\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
+    public function update(Request $request,$id)
     {
-        //
+        DB::table('restaurants')->where('id',$id)->update([
+            'name'=>$request->name,
+            'adresse'=>$request->adresse,
+            'tele'=>$request->tele,
+
+    ]);
+        return redirect()->back();
+    
     }
 
     /**
@@ -93,8 +100,9 @@ class RestaurantController extends Controller
      * @param  \App\Models\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Restaurant $restaurant)
+    public function destroy($id)
     {
-        //
+        DB::table('restaurants')->where('id',$id)->delete();
+        return back();
     }
 }

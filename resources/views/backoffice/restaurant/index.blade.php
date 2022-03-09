@@ -19,8 +19,8 @@
             <td>{{$restaurant->name}}</td>
             <td>{{$restaurant->adresse}}</td>
             <td>{{$restaurant->tele}}</td>
-            <td> <a href="{{route('edit.client',['id' => $restaurant->id])}}">Edit</a></td>
-            <td> <a href="/deleteC/{{$restaurant->id}}">delete</a> </td>
+            <td> <a href="{{route('edit.restaurant',['id' => $restaurant->id])}}">Edit</a></td>
+            <td> <a href="{{route('delete.restaurant',['id' => $restaurant->id])}}">delete</a> </td>
           
             <tr>
                 @endforeach

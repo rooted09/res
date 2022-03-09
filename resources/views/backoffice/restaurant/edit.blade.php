@@ -1,6 +1,6 @@
 @extends('backoffice.layouts.app')
 @section('content')
-<form action="{{route('update.client',['id' => $restaurant->id])}}" method="post">
+<form action="{{route('update.restaurant',['id' => $restaurant->id])}}" method="post">
     @csrf
     <td><input type="hidden" name="id" value="{{$restaurant->id}}" />
 <div class="mb-3">

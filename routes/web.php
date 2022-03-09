@@ -19,8 +19,10 @@ Route::prefix('admin')->group(function()   {
         Route::get('restaurant/add', [RestaurantController::class,'create'])->name('restaurant.add');  
         Route::post('restaurant/store', [RestaurantController::class,'store'])->name('restaurant.insert');
         Route::get('restaurant/', [RestaurantController::class,'index'])->name('restaurant.index');
-        Route::get('/edit/{id}',[RestaurantController::class,'edit'])->name('edit.client');
-        Route::get('/update/{id}',[RestaurantController::class,'update'])->name('update.client');
+        Route::get('/edit/{id}',[RestaurantController::class,'edit'])->name('edit.restaurant');
+        Route::post('/update/{id}',[RestaurantController::class,'update'])->name('update.restaurant');
+        Route::get('/delete/{id}',[RestaurantController::class,'destroy'])->name('delete.restaurant');
+
 
 
 
