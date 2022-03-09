@@ -58,9 +58,13 @@ class RestaurantController extends Controller
      * @param  \App\Models\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function show(Restaurant $restaurant)
+    public function show($restaurant)
     {
-        //
+
+       $rest= Restaurant::find($restaurant);
+        return view('backoffice.restaurant.show',[
+            'restaurant' => $rest
+        ]);
     }
 
     /**

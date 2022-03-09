@@ -15,14 +15,17 @@ Route::prefix('admin')->group(function()   {
     Route::post('login', [AdminController::class,'login'])->name('admin.login');
 
     // Route::middleware('auth:admin')->group(function()   {
+        
         Route::get('/', [DashboardController::class,'index'])->name('admin.home');
-        Route::get('restaurant/add', [RestaurantController::class,'create'])->name('restaurant.add');  
-        Route::post('restaurant/store', [RestaurantController::class,'store'])->name('restaurant.insert');
-        Route::get('restaurant/', [RestaurantController::class,'index'])->name('restaurant.index');
-        Route::get('/edit/{id}',[RestaurantController::class,'edit'])->name('edit.restaurant');
-        Route::post('/update/{id}',[RestaurantController::class,'update'])->name('update.restaurant');
-        Route::get('/delete/{id}',[RestaurantController::class,'destroy'])->name('delete.restaurant');
-
+    Route::prefix('restaurant')->name('restaurant.')->group(function(){
+        Route::get('add', [RestaurantController::class,'create'])->name('add');  
+        Route::post('store', [RestaurantController::class,'store'])->name('insert');
+        Route::get('/', [RestaurantController::class,'index'])->name('index');
+        Route::get('/edit/{id}',[RestaurantController::class,'edit'])->name('edit');
+        Route::post('/update/{id}',[RestaurantController::class,'update'])->name('update');
+        Route::get('/delete/{id}',[RestaurantController::class,'destroy'])->name('delete');
+        Route::get('show/{id}', [RestaurantController::class,'show'])->name('show');
+    });
 
 
 
