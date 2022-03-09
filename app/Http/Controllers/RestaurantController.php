@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Restaurant;
 use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -15,7 +17,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -25,7 +27,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice.restaurant.add');
     }
 
     /**
@@ -34,9 +36,19 @@ class RestaurantController extends Controller
      * @param  \App\Http\Requests\StoreRestaurantRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRestaurantRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=> 'required|string|max:25',
+            'adresse'=> 'required',
+            'tele'=> 'required'
+        ]);
+       Restaurant::create([
+           'name'=>$request->name,
+           'adresse'=>$request->adresse,
+           'tele'=>$request->tele,
+       ]);
+       return redirect()->back();
     }
 
     /**
