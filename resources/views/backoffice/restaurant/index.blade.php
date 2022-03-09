@@ -1,9 +1,7 @@
 @extends('backoffice.layouts.app')
 @section('content')
-<form action="route({{restaurant.index}})" method="post">
-    @csrf
-<table>
-        <thead style='background:#FF4B2B' >
+<table border=1 >
+        <thead >
         
            <th>id</th>
             <th>name</th>
@@ -11,7 +9,7 @@
             <th>tele</th>
             <th>MODIFICATION</th>
             <th>SUPPRESSION</th>
-          </thead>
+        </thead>
         
         <tbody>
             @foreach($restaurants as $restaurant)
@@ -21,13 +19,11 @@
             <td>{{$restaurant->name}}</td>
             <td>{{$restaurant->adresse}}</td>
             <td>{{$restaurant->tele}}</td>
-            <td> <button><a href="/editC/{{$restaurant->id}}">Edit</a></button></td>
-            <td> <button><a href="/deleteC/{{$restaurant->id}}">delete</a> </button> </td>
+            <td> <a href="{{route('edit.client',['id' => $restaurant->id])}}">Edit</a></td>
+            <td> <a href="/deleteC/{{$restaurant->id}}">delete</a> </td>
           
             <tr>
                 @endforeach
             <tbody>
-            </table>
-
-        </form>
+</table>
 @endsection

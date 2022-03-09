@@ -7,6 +7,7 @@ use App\Http\Controllers\RestaurantController;
 // Admin Controllers
 use App\Http\Controllers\Backoffice\DashboardController;
 
+
 // begin admin routes
 Route::prefix('admin')->group(function()   {
     // admins login routes
@@ -17,7 +18,12 @@ Route::prefix('admin')->group(function()   {
         Route::get('/', [DashboardController::class,'index'])->name('admin.home');
         Route::get('restaurant/add', [RestaurantController::class,'create'])->name('restaurant.add');  
         Route::post('restaurant/store', [RestaurantController::class,'store'])->name('restaurant.insert');
-        Route::post('restaurant/', [RestaurantController::class,'index'])->name('restaurant.index');
+        Route::get('restaurant/', [RestaurantController::class,'index'])->name('restaurant.index');
+        Route::get('/edit/{id}',[RestaurantController::class,'edit'])->name('edit.client');
+        Route::get('/update/{id}',[RestaurantController::class,'update'])->name('update.client');
+
+
+
     // });
 });
 
