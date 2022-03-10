@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\categorieController;
 // Admin Controllers
 use App\Http\Controllers\Backoffice\DashboardController;
 
@@ -17,6 +19,7 @@ Route::prefix('admin')->group(function()   {
     // Route::middleware('auth:admin')->group(function()   {
         
         Route::get('/', [DashboardController::class,'index'])->name('admin.home');
+        // restaurant routes
     Route::prefix('restaurant')->name('restaurant.')->group(function(){
         Route::get('add', [RestaurantController::class,'create'])->name('add');  
         Route::post('store', [RestaurantController::class,'store'])->name('insert');
@@ -29,9 +32,26 @@ Route::prefix('admin')->group(function()   {
 
 
 
+         // categories routes
+        Route::prefix('categorie')->name('categorie.')->group(function(){
+            Route::get('',[categorieController::class,'index'])->name('index');
+            Route::get('add',[categorieController::class,'create'])->name('add');
+            Route::post('store/{id}',[categorieController::class,'store'])->name('store');
+            Route::get('edit/{id}',[categorieController::class,'edit'])->name('edit');
+            Route::post('update/{id}',[categorieController::class,'update'])->name('update');
+            Route::get('delete/{categorie}',[categorieController::class,'destroy'])->name('delete');
+        });
     // });
+        // clients routes
+        Route::prefix('client')->name('client.')->group(function(){
+            Route::get('',[ClientController::class,'index'])->name('index');
+            Route::get('add',[ClientController::class,'create'])->name('add');
+            Route::post('store',[ClientController::class,'store'])->name('store');
+            Route::get('edit/{id}',[ClientController::class,'edit'])->name('edit');
+            Route::post('update/{id}',[ClientController::class,'update'])->name('update');
+            Route::get('delete/{id}',[ClientController::class,'destroy'])->name('delete');
+        });
 });
-
 // end admin routes
 
 // begin visitors routes

@@ -7,7 +7,7 @@ use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DB;
+use Illuminate\Support\Facades\DB;
 class RestaurantController extends Controller
 {
     /**
@@ -49,7 +49,7 @@ class RestaurantController extends Controller
            'adresse'=>$request->adresse,
            'tele'=>$request->tele,
        ]);
-       return redirect()->back();
+       return redirect()->route('restaurant.index');
     }
 
     /**
@@ -75,8 +75,8 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        $restaurant=DB::table('restaurants')->where('id',$id)->first();
-        return view('backoffice.restaurant.edit',compact('restaurant'));
+        $restaurant=Restaurant::find($id);
+        return view('backoffice.restaurant.edit',['restaurant'=>$restaurant]);
     }
 
     /**
@@ -86,15 +86,15 @@ class RestaurantController extends Controller
      * @param  \App\Models\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request,$restaurants)
     {
-        DB::table('restaurants')->where('id',$id)->update([
+        Restaurant::find($restaurants)->update([
             'name'=>$request->name,
             'adresse'=>$request->adresse,
             'tele'=>$request->tele,
 
     ]);
-        return redirect()->back();
+        return redirect()->route('restaurant.index');
     
     }
 
