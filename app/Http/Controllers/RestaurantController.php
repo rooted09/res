@@ -49,7 +49,7 @@ class RestaurantController extends Controller
            'adresse'=>$request->adresse,
            'tele'=>$request->tele,
        ]);
-       return redirect()->back();
+       return redirect()->route('restaurant.index');
     }
 
     /**
@@ -58,9 +58,13 @@ class RestaurantController extends Controller
      * @param  \App\Models\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function show(Restaurant $restaurant)
+    public function show($restaurant)
     {
-        //
+
+       $rest= Restaurant::find($restaurant);
+        return view('backoffice.restaurant.show',[
+            'restaurant' => $rest
+        ]);
     }
 
     /**
@@ -71,8 +75,8 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        $restaurant=DB::table('restaurants')->where('id',$id)->first();
-        return view('backoffice.restaurant.edit',compact('restaurant'));
+        $restaurant=Restaurant::find($id);
+        return view('backoffice.restaurant.edit',['restaurant'=>$restaurant]);
     }
 
     /**
@@ -82,9 +86,16 @@ class RestaurantController extends Controller
      * @param  \App\Models\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
+    public function update(Request $request,$id)
     {
-        //
+        DB::table('restaurants')->where('id',$id)->update([
+            'name'=>$request->name,
+            'adresse'=>$request->adresse,
+            'tele'=>$request->tele,
+
+    ]);
+        return redirect()->back();
+    
     }
 
     /**
@@ -93,8 +104,9 @@ class RestaurantController extends Controller
      * @param  \App\Models\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Restaurant $restaurant)
+    public function destroy($id)
     {
-        //
+        DB::table('restaurants')->where('id',$id)->delete();
+        return back();
     }
 }
