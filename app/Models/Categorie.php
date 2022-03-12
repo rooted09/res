@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categorie extends Model
 {
+    protected $fillable = ['name'];
     use HasFactory;
+
     /**
      * Get the user that owns the Categorie
      *

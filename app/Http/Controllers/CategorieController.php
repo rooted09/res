@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
+use App\Models\Restaurant;
+
 use App\Http\Requests\StoreCategorieRequest;
-use App\Http\Requests\UpdateCategorieRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class CategorieController extends Controller
 {
@@ -15,7 +19,9 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+         
+    
+    
     }
 
     /**
@@ -34,9 +40,20 @@ class CategorieController extends Controller
      * @param  \App\Http\Requests\StoreCategorieRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategorieRequest $request)
+    public function store(Request $request,$rest_id)
     {
-    
+        $request->validate([
+         'name'=>'required|string'
+         
+    ]);
+
+        $cat = Categorie::create([
+            'name' => $request->name,
+            
+        ]);
+        Restaurant::find($rest_id)->categorie()->attach([$cat->id]); 
+
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +98,7 @@ class CategorieController extends Controller
      */
     public function destroy(Categorie $categorie)
     {
-        //
+        $categorie->delete();
+        return redirect()->back();
     }
 }

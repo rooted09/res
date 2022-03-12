@@ -16,5 +16,6 @@
 </div>
 <div class="mb-3">
   <input type="submit" class="btn btn-success" name='btn'id="btn" value="Add" >
-</div></form>
+</div>
+</form>
 @endsection

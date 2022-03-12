@@ -86,15 +86,15 @@ class RestaurantController extends Controller
      * @param  \App\Models\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request,$restaurants)
     {
-        DB::table('restaurants')->where('id',$id)->update([
+        Restaurant::find($restaurants)->update([
             'name'=>$request->name,
             'adresse'=>$request->adresse,
             'tele'=>$request->tele,
 
     ]);
-        return redirect()->back();
+        return redirect()->route('restaurant.index');
     
     }
 

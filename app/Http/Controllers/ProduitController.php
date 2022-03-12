@@ -28,9 +28,9 @@ class ProduitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('backoffice.produit.add');
+        return view('backoffice.produit.add',['id'=>$id]);
     }
 
     /**
@@ -39,25 +39,25 @@ class ProduitController extends Controller
      * @param  \App\Http\Requests\StoreProduitRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $request->validate([
             'name'=> 'required|string|max:25',
             'prix'=> 'required|numeric',
-            // 'disponibilte'=> 'required',
+             'disponibilite'=> 'required',
             'duree'=> 'required',
             'description'=> 'required'
         ]);
        $produit = Produit::create([
-           'categorie_id'=>1,
+           'categorie_id'=>$id,
            'name'=> $request->name,
+           'image'=> 'image',
             'prix'=> $request->prix,
-            // 'disponibilte'=> $request->disponibilte,
+            'disponibilite'=> $request->disponibilite,
             'duree_preparation'=> $request->duree,
             'desc'=> $request->description
        ]);
-       return redirect()->route('produit.index');
-    //    route('restaurant.show',['id' => $produit->categorie->retaurant->id]);
+       return redirect()->route('restaurant.show',['id' => $produit->categorie->restaurant->id]);
     }
 
     /**
@@ -95,7 +95,7 @@ class ProduitController extends Controller
         $request->validate([
             'name'=> 'required|string|max:25',
             'prix'=> 'required|numeric',
-            // 'disponibilte'=> 'required',
+             'disponibilite'=> 'required',
             'duree'=> 'required',
             'description'=> 'required'
         ]);
@@ -104,7 +104,7 @@ class ProduitController extends Controller
             'categorie_id'=>1,
             'name'=> $request->name,
              'prix'=> $request->prix,
-             // 'disponibilte'=> $request->disponibilte,
+             'disponibilite'=> $request->disponibilite,
              'duree_preparation'=> $request->duree,
              'desc'=> $request->description
             ]

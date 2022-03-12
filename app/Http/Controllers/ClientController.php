@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +18,9 @@ class ClientController extends Controller
     {
         
         $clients =  Client::all();
-        return view('backoffice.client.index',[
-            'clients' =>   $clients
+        return view('backoffice.client.index',
+        [
+            'clients' => $clients
         ]);
     
     }
@@ -42,7 +44,12 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     { 
-        $v1=Auth::id();
+        // $v1=Auth::id();
+        $v1 = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->name),
+        ]);
         $request->validate([
          'name'=>'required|string',
          'prenom'=>'required|string',
@@ -92,20 +99,22 @@ class ClientController extends Controller
      */
     public function update(Request $request,$client)
     {
+
         $v1=Auth::id();
         $request->validate([
          'name'=>'required|string',
          'prenom'=>'required|string',
          'tele'=>'required|string'
-    ]);
+        ]);
 
-        Client::find($client)
-       ->update([
+        Client::find($client)->update(
+        [
             'name' => $request->name,
             'prenom' => $request->prenom,
             'tele' => $request->tele,
             'user_id'=>$v1
-        ]);
+        ]
+        );
 
         return redirect()->back();
     }
