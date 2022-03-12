@@ -7,9 +7,11 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\categorieController;
+
+
 // Admin Controllers
 use App\Http\Controllers\Backoffice\DashboardController;
-
+use App\Http\Controllers\visitors\produit_vController;
 
 // begin admin routes
 Route::prefix('admin')->group(function()   {
@@ -62,14 +64,18 @@ Route::prefix('admin')->group(function()   {
         Route::post('/update/{id}',[ProduitController::class,'update'])->name('update');
         Route::get('/delete/{id}',[ProduitController::class,'destroy'])->name('delete');
     });
-
-});
-    // });
+      
+     });
 
 // end admin routes
 
 // begin visitors routes
 Route::middleware('auth')->group(function()   {
+    // produitsCard routes 
+    Route::prefix('produit')->name('produitC.')->group(function(){
+        Route::get('/', [produit_vController::class,'index'])->name('show');  
+
+    });
 });
 //end visitors routes
 

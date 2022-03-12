@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produit;
-
+use App\Models\Categorie;
 use App\Http\Requests\UpdateProduitRequest;
 use Illuminate\Http\Request;
 
@@ -39,7 +39,7 @@ class ProduitController extends Controller
      * @param  \App\Http\Requests\StoreProduitRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, Categorie $id)
     {
         $request->validate([
             'name'=> 'required|string|max:25',

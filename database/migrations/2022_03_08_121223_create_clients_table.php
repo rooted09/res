@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('prenom');
             $table->string('tele');
-            $table->foreignId('user_id')->onDeleteCascade();
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
