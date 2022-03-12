@@ -15,8 +15,8 @@ Route::prefix('admin')->group(function()   {
     // admins login routes
     Route::get('login', [AdminController::class,'index'])->name('admin.login');
     Route::post('login', [AdminController::class,'login'])->name('admin.login');
-
-    // Route::middleware('auth:admin')->group(function()   {
+    
+    Route::middleware('auth:admin')->group(function()   {
         
         Route::get('/', [DashboardController::class,'index'])->name('admin.home');
         // restaurant routes
@@ -51,6 +51,7 @@ Route::prefix('admin')->group(function()   {
             Route::post('update/{id}',[ClientController::class,'update'])->name('update');
             Route::get('delete/{id}',[ClientController::class,'destroy'])->name('delete');
         });
+});
 });
 // end admin routes
 

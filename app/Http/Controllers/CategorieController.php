@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorie;
 use App\Models\Restaurant;
-
 use App\Http\Requests\StoreCategorieRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -85,9 +84,13 @@ class CategorieController extends Controller
      * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategorieRequest $request, Categorie $categorie)
+    public function update(Request $request, $id)
     {
-        //
+        Categorie::find($id)
+        ->update([
+            'name' => $request->name
+        ]);
+        return redirect()->back();
     }
 
     /**

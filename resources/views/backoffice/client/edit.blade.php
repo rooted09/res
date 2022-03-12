@@ -1,3 +1,7 @@
+@extends('backoffice.layouts.app')
+@section('content')
+@section('table','cliens')
+@section('subtable','modifier')
 <form action="{{route('client.update',['id' =>$client->id])}}" method="post">
     @csrf
 <div class="mb-3">

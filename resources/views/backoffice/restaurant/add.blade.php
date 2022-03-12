@@ -1,5 +1,7 @@
 @extends('backoffice.layouts.app')
 @section('content')
+@section('table','restaurants')
+@section('subtable','ajouter')
 <form action="{{route('restaurant.insert')}}" method="post">
     @csrf
 <div class="mb-3">

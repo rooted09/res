@@ -13,4 +13,9 @@ class Produit extends Model
     {
         return $this->belongsToMany(Commande::class, 'commande_produits', 'produit_id' ,'commande_id');
     }
+
+    public function categorie()
+    {
+        return $this->belongsTo(Produit::class);
+    }
 }
