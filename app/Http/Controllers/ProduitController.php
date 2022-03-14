@@ -41,6 +41,15 @@ class ProduitController extends Controller
      */
     public function store(Request $request, Categorie $id)
     {
+        $filenameWithExt = $request->file('image')->getClientOriginalName();
+        //Get just filename
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        // Get just ext
+        $extension = $request->file('image')->getClientOriginalExtension();
+        // Filename to store
+        $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        // Upload Image
+        $request->logo->move(public_path('products'), $fileNameToStore);
         $request->validate([
             'name'=> 'required|string|max:25',
             'prix'=> 'required|numeric',
@@ -49,15 +58,15 @@ class ProduitController extends Controller
             'description'=> 'required'
         ]);
        $produit = Produit::create([
-           'categorie_id'=>$id,
+           'categorie_id'=>$id->id,
            'name'=> $request->name,
-           'image'=> 'image',
+           'image'=> $filename,
             'prix'=> $request->prix,
             'disponibilite'=> $request->disponibilite,
             'duree_preparation'=> $request->duree,
             'desc'=> $request->description
        ]);
-       return redirect()->route('restaurant.show',['id' => $produit->categorie->restaurant->id]);
+       return redirect()->route('restaurant.show',['id' => $id->restaurant->first()]);
     }
 
     /**

@@ -1,10 +1,12 @@
 @extends('backoffice.layouts.app')
 @section('content')
+@section('table','restaurants')
+@section('subtable','liste')
 <div class="container">
     <a class="btn btn-success mt-5 mb-5 ml-auto" href="{{route('restaurant.add')}}">Ajouter</a>
     
     <table class="table table-striped table-bordered text-center">
-        <thead >
+        <tr >
         
            <th>id</th>
             <th>name</th>
@@ -13,9 +15,7 @@
             <th>Details</th>
             <th>MODIFICATION</th>
             <th>SUPPRESSION</th>
-        </thead>
-        
-        <tbody>
+        </tr>
             @foreach($restaurants as $restaurant)
         <tr>
            
@@ -29,6 +29,5 @@
           
             <tr>
                 @endforeach
-            <tbody>
 </table>
 @endsection

@@ -19,10 +19,10 @@ Route::prefix('admin')->group(function()   {
     // admins login routes
     Route::get('login', [AdminController::class,'index'])->name('admin.login');
     Route::post('login', [AdminController::class,'login'])->name('admin.login');
+    Route::post('logout', [AdminController::class,'logout'])->name('admin.logout');
 
-    //Route::middleware('auth:admin')->group(function()   {
-        Route::get('/', [DashboardController::class,'index'])->name('admin.home');
-    // Route::middleware('auth:admin')->group(function()   {
+    
+    Route::middleware('auth:admin')->group(function()   {
         
         // restaurant routes
     Route::prefix('restaurant')->name('restaurant.')->group(function(){
@@ -57,17 +57,21 @@ Route::prefix('admin')->group(function()   {
             Route::get('delete/{id}',[ClientController::class,'destroy'])->name('delete');
         });
      // produits routes 
-     Route::prefix('produit')->name('produit.')->group(function(){
+    Route::prefix('produit')->name('produit.')->group(function(){
         Route::get('add/{id}', [ProduitController::class,'create'])->name('add');  
         Route::post('store/{id}', [ProduitController::class,'store'])->name('insert');
         Route::get('/', [ProduitController::class,'index'])->name('index');
         Route::get('/edit/{id}',[ProduitController::class,'edit'])->name('edit');
         Route::post('/update/{id}',[ProduitController::class,'update'])->name('update');
-        Route::get('/delete/{id}',[ProduitController::class,'destroy'])->name('delete');
+        Route::get('/delete/{id}',[ProduitController::class,'destroy'])->name('delete');});
     });
-      
-     });
 
+    Route::prefix('auth')->name('auth.')->group(function(){
+        Route::get('/', [AdminController::class,'show'])->name('show');
+        Route::get('add', [AdminController::class,'create'])->name('update');  
+        Route::post('store', [AdminController::class,'store'])->name('insert');
+    });
+});
 // end admin routes
 
 // begin visitors routes

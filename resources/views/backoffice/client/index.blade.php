@@ -1,7 +1,9 @@
 @extends('backoffice.layouts.app')
 @section('content')
+@section('table','clients')
+@section('subtable','liste')
 <div class="container">
-<a class="btn btn-success mt-5 mb-5 ml-auto" href="{{route('client.add')}}">Ajouter</a>
+<a class="btn btn-success m-3 ml-auto" href="{{route('client.add')}}">Ajouter</a>
 
 <table class="table table-striped table-bordered text-center">
     
