@@ -12,6 +12,7 @@ use App\Http\Controllers\categorieController;
 // Admin Controllers
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\visitors\produit_vController;
+use App\Http\Controllers\visitors\restaurant_vController;
 
 // begin admin routes
 Route::prefix('admin')->group(function()   {
@@ -70,12 +71,13 @@ Route::prefix('admin')->group(function()   {
 // end admin routes
 
 // begin visitors routes
-Route::middleware('auth')->group(function()   {
+Route::middleware('auth')->group(function(){
     // produitsCard routes 
     Route::prefix('produit')->name('produitC.')->group(function(){
-        Route::get('/', [produit_vController::class,'index'])->name('show');  
-
+        Route::get('/{id}', [produit_vController::class,'index'])->name('show'); 
+     
     });
+    Route::get('/rest', [restaurant_vController::class,'index'])->name('list'); 
 });
 //end visitors routes
 
