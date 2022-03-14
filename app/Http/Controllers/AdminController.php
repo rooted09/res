@@ -46,9 +46,9 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show()
     {
-        //
+        return view('backoffice.auth.profile');
     }
 
     /**
@@ -72,6 +72,11 @@ class AdminController extends Controller
     public function update(UpdateAdminRequest $request, Admin $admin)
     {
         //
+    }
+
+    public function logout() {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
     }
 
     /**

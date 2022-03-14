@@ -23,7 +23,7 @@
             <td>{{$restaurant->name}}</td>
             <td>{{$restaurant->adresse}}</td>
             <td>{{$restaurant->tele}}</td>
-            <td> <a  class="btn btn-primary" href="{{route('restaurant.show',['id' => $restaurant->id])}}">Details</a></td>
+            <td> <a class="btn btn-primary" href="{{route('restaurant.show',['id' => $restaurant->id])}}">Details</a></td>
             <td> <a class="btn btn-danger"  href="{{route('restaurant.edit',['id' => $restaurant->id])}}">Edit</a></td>
             <td> <a class="btn btn-secondary" href="{{route('restaurant.delete',['id' => $restaurant->id])}}">delete</a> </td>
           

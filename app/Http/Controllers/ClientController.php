@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +19,9 @@ class ClientController extends Controller
     {
         
         $clients =  Client::all();
-        return view('backoffice.client.index',[
-            'clients' =>   $clients
+        return view('backoffice.client.index',
+        [
+            'clients' => $clients
         ]);
     
     }
@@ -41,19 +44,25 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-        $v1=Auth::id();
-        $request->validate([
-         'name'=>'required|string',
-         'prenom'=>'required|string',
-         'tele'=>'required|string'
-    ]);
-
+    {   $request->validate([
+        'name'=>'required|string',
+        'nameutili'=>'required|string',
+        'email'=>'required|email|unique:users,email',
+        'prenom'=>'required|string',
+        'password'=>'required|min:8',
+        'tele'=>'required|string'
+   ]);
+        // $v1=Auth::id();
+        $v1 = User::create([
+            'name' => $request->nameutili,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
         Client::create([
             'name' => $request->name,
             'prenom' => $request->prenom,
             'tele' => $request->tele,
-            'user_id'=>$v1
+            'user_id' => $v1->id
         ]);
 
         return redirect()->route('client.index');
@@ -90,24 +99,30 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$client)
+    public function update(Request $request, $client)
     {
-        $v1=Auth::id();
+        $client = Client::find($client);
         $request->validate([
-         'name'=>'required|string',
-         'prenom'=>'required|string',
-         'tele'=>'required|string'
-    ]);
-
-        Client::find($client)
-       ->update([
+            'name'=>'required|string',
+            'nameutili'=>'required|string',
+            'email'=>'required|email',
+            'prenom'=>'required|string',
+            'password'=>'min:8',
+            'tele'=>'required|string'
+       ]);
+       $client->user->update([
+        'name' => $request->nameutili,
+        'email' => $request->email
+        ]);
+        $client->update(
+        [
             'name' => $request->name,
             'prenom' => $request->prenom,
-            'tele' => $request->tele,
-            'user_id'=>$v1
-        ]);
+            'tele' => $request->tele
+        ]
+        );
 
-        return redirect()->back();
+        return redirect()->route('client.index');
     }
 
     /**
@@ -118,7 +133,7 @@ class ClientController extends Controller
      */
     public function destroy($client)
     {
-        Client::find($client)->delete();
+        User::find($client)->delete();
         return redirect()->back();
     }
 }

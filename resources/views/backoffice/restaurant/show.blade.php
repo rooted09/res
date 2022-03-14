@@ -21,22 +21,22 @@
             <a data-bs-toggle="modal" data-bs-target="#edit_Modal{{$item->id}}" class="ml-4 text-secondary" data-id="{{$item->id}}"><i class="fa-solid fa-pen-to-square"></i></a> 
             | <a href="{{route('categorie.delete',['categorie'=> $item])}}" class="text-danger"><i class="fa-solid fa-xmark"></i></a></div>
             <br>
-            <a href="{{route('produit.add')}}" class="btn btn-secondary">Produit +</a>
+            <a href="{{route('produit.add',['id'=>$item])}}" class="btn btn-secondary">Produit +</a>
             <div class="row">
-            <div class="col-sm-4">
               @foreach ($item->produit as $product)
-              <div class="card" >
+            <div class="col-sm-4">
+              <div class="card mt-3">
                 <div class="card-body">
-                  <h5 class="card-title">Saldes fruit</h5>
-                  <p class="card-text">20.00 DH</p>
-                  <p class="card-text">il ya 5 jours</p>
+                  <h5 class="card-title">{{$product->name}}</h5>
+                  <p class="card-text">{{$product->prix}}.00 DH</p>
+                  <p class="card-text">{{$product->created_at->diffForHumans()}}</p>
                   <a href="#" class="btn btn-danger">Supprimer</a>
                   <a href="#" class="btn btn-light">Modifier</a>
                 </div>
               </div>
-              @endforeach
             </div>
-        </div>
+            @endforeach
+          </div>
               
     @endforeach
 

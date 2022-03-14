@@ -36,10 +36,18 @@
                   {{Auth::guard('admin')->user()->name}}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Admin</a></li>
-                  <li><a class="dropdown-item" href="#">Login</a></li>
+                  <li><a class="dropdown-item" href="{{route('auth.show')}}">Admin</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                  <li> <a class="dropdown-item" href="{{ route('admin.logout') }}"
+                    onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                     {{ __('Logout') }}
+                 </a>
+
+                 <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                     @csrf
+                 </form>
+                </li>
                 </ul>
             </li>
         </div>
@@ -57,5 +65,13 @@
         @yield('content')
     </div>
     </main>
+    <script>
+        const previewImage = e => {
+           const preview = document.getElementById('preview');
+           preview.src = URL.createObjectURL(e.target.files[0]);
+           preview.onload = () => URL.revokeObjectURL(preview.src);
+        };
+     </script>
+     
 </body>
 </html>
