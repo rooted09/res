@@ -9,6 +9,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\categorieController;
 
 
+
 // Admin Controllers
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\visitors\produit_vController;
@@ -67,8 +68,8 @@ Route::prefix('admin')->group(function()   {
 
     Route::prefix('auth')->name('auth.')->group(function(){
         Route::get('/', [AdminController::class,'show'])->name('show');
-        Route::get('add', [AdminController::class,'create'])->name('update');  
-        Route::post('store', [AdminController::class,'store'])->name('insert');
+        Route::post('update', [AdminController::class,'update'])->name('update');  
+        Route::post('edit', [AdminController::class,'edit'])->name('edit');
     });
 });
 // end admin routes

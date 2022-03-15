@@ -49,7 +49,7 @@ class ProduitController extends Controller
         // Filename to store
         $fileNameToStore = $filename.'_'.time().'.'.$extension;
         // Upload Image
-        $request->logo->move(public_path('products'), $fileNameToStore);
+        $request->image->move(public_path('products'), $fileNameToStore);
         $request->validate([
             'name'=> 'required|string|max:25',
             'prix'=> 'required|numeric',

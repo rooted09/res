@@ -7,16 +7,16 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="" method="post">
+            <form action="{{route('auth.edit')}}" method="post">
                 @csrf
             <div class="mb-3">
               <label for="exampleFormControlInput1"  class="form-label">Nouveau Mot de Pass :</label>
-              <input type="password" class="form-control" name='name' id="name" >
+              <input type="password" class="form-control" name='password' id="password" value="">
             </div>
 
             <div class="mb-3">
                 <label for="exampleFormControlInput1"  class="form-label">Confirm Mot de Pass</label>
-                <input type="password" class="form-control" name='name' id="name" >
+                <input type="password" class="form-control" name='confirmed' id="name" value="">
             </div>
             
           <button type="submit" class="btn btn-primary">Enregistrer</button>
