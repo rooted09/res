@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Commande extends Model
 {
     use HasFactory;
+    protected $fillable = ['client_id','restaurant_id','etat','prix'];
+
 
     /**
      * The roles that belong to the Commande

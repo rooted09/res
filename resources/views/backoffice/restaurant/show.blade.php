@@ -11,8 +11,9 @@
               <h5 class="card-title">{{$restaurant->name}}</h5>
               <p class="card-text">{{$restaurant->adresse}}</p>
               <p class="card-text">{{$restaurant->tele}}</p>
-              <a href="#" class="btn btn-light">Modifier</a>
+             
             </div>
+         
           </div>
           <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success mt-3">Ajouter Categorie +</a>
           @foreach ($restaurant->categorie as $item)
@@ -30,8 +31,8 @@
                   <h5 class="card-title">{{$product->name}}</h5>
                   <p class="card-text">{{$product->prix}}.00 DH</p>
                   <p class="card-text">{{$product->created_at->diffForHumans()}}</p>
-                  <a href="#" class="btn btn-danger">Supprimer</a>
-                  <a href="#" class="btn btn-light">Modifier</a>
+                  <a href="{{route('produit.delete',['id'=>$product->id])}}" class="btn btn-danger">Supprimer</a>
+                  <a href="{{route('produit.edit',['id'=>$product->id])}}" class="btn btn-light">Modifier</a>
                 </div>
               </div>
             </div>

@@ -13,6 +13,8 @@ use App\Http\Controllers\categorieController;
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\visitors\produit_vController;
 use App\Http\Controllers\visitors\restaurant_vController;
+use App\Http\Controllers\visitors\commande_vController;
+use GuzzleHttp\Middleware;
 
 // begin admin routes
 Route::prefix('admin')->group(function()   {
@@ -62,7 +64,7 @@ Route::prefix('admin')->group(function()   {
         Route::post('store/{id}', [ProduitController::class,'store'])->name('insert');
         Route::get('/', [ProduitController::class,'index'])->name('index');
         Route::get('/edit/{id}',[ProduitController::class,'edit'])->name('edit');
-        Route::post('/update/{id}',[ProduitController::class,'update'])->name('update');
+        Route::post('/update/{produit}',[ProduitController::class,'update'])->name('update');
         Route::get('/delete/{id}',[ProduitController::class,'destroy'])->name('delete');});
     });
 
@@ -81,7 +83,10 @@ Route::middleware('auth')->group(function(){
         Route::get('/{id}', [produit_vController::class,'index'])->name('show'); 
      
     });
+
     Route::get('/rest', [restaurant_vController::class,'index'])->name('list'); 
+    Route::get('/commande/{id}', [commande_vController::class,'store'])->name('c_insert'); 
+
 });
 //end visitors routes
 

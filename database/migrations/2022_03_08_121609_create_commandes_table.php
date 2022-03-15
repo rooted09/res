@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->onDeleteCascade();
             $table->foreignId('restaurant_id')->onDeleteCascade();
-            $table->string('etat');
-            $table->float('prix');
+            $table->string('etat')->default('commande');
+            $table->float('prix')->default(0);
             $table->timestamps();
         });
     }
