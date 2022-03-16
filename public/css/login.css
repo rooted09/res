@@ -1,0 +1,197 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+    position: relative;
+    margin-top: 30px;
+    font-size: 12px;
+
+}
+
+.link {
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(83, 86, 253);
+    cursor: pointer;
+}
+
+section {
+    position: relative;
+    min-height: 100vh;
+    background: rgb(111, 225, 253);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+}
+
+section .container {
+    overflow: hidden;
+    width: 850px;
+    height: 550px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.09), 0 4px 2px rgba(0, 0, 0, 0.09), 0 8px 4px rgba(0, 0, 0, 0.09), 0 16px 8px rgba(0, 0, 0, 0.09), 0 32px 16px rgba(0, 0, 0, 0.09);
+    position: relative;
+    background: #fff;
+
+}
+
+section .container .user {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+section .container .user .imagBox {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    background: #ff0;
+    transition: 0.5S;
+}
+
+/* section .container .user .imagBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} */
+
+.img1 {
+    position: absolute;
+    top: 84px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.img2 {
+    position: absolute;
+    top: 120px;
+    left: 79px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+section .container .user .formBox {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    transition: 0.5S;
+}
+
+
+section .container .user .formBox form h2 {
+
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.input {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    background: #f5f5f5;
+    color: #333;
+    border: none;
+    box-shadow: none;
+    margin: 8px 0;
+    outline: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.submit {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    color: rgb(240, 240, 240);
+    border: none;
+    box-shadow: none;
+    margin: 8px 0;
+    align-items: center;
+    outline: none;
+    border-radius: 10px;
+    font-weight: 300;
+    max-width: 100px;
+    background: blueviolet;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+
+.submit:hover {
+    background: rgb(31, 0, 145);
+}
+
+section .container.active .sginUpbx {
+    pointer-events: initial;
+}
+
+section .container .sginUpbx {
+    pointer-events: none;
+}
+
+
+
+section .container .sginUpbx .formBox {
+    left: 100%;
+}
+
+section .container.active .sginUpbx .formBox {
+    left: 0%;
+}
+
+
+section .container .sginUpbx .imagBox {
+    left: -100%;
+}
+
+section .container.active .sginUpbx .imagBox {
+    left: 0%;
+}
+
+
+
+
+
+section .container .sgininbx .formBox {
+    right: 0%;
+}
+
+section .container.active .sgininbx .formBox {
+    right: 100%;
+}
+
+
+section .container .sgininbx .imagBox {
+    right: 0%;
+}
+
+section .container.active .sgininbx .imagBox {
+    right: -100%;
+}
