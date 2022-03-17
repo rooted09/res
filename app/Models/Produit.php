@@ -10,15 +10,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Produit extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','categorie_id','desc','prix','duree_preparation','image','disponibilite'];
-    
+    protected $fillable = ['name', 'categorie_id', 'desc', 'prix', 'duree_preparation', 'image', 'disponibilite'];
+
     public function commande()
-    { 
-        return $this->belongsToMany(Commande::class, 'commande_produits', 'produit_id' ,'commande_id');
+    {
+        return $this->belongsToMany(Commande::class, 'commande_produits', 'produit_id', 'commande_id');
     }
 
     public function categorie()
     {
-        return $this->belongsTo(Produit::class);
+        return $this->belongsTo(Categorie::class);
+    }
+    public function client()
+    {
+        return $this->belongsToMany(Client::class, 'pannels');
     }
 }

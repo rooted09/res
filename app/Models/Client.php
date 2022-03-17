@@ -18,6 +18,14 @@ class Client extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
+    }
+    public function commande()
+    {
+        return $this->hasOne(User::class);
+    }
+    public function produit()
+    {
+        return $this->belongsToMany(Produit::class, 'pannels');
     }
 }

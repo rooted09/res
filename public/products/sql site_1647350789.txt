@@ -1,0 +1,69 @@
+﻿CREATE DATABASE siteLvr
+use siteLvr
+CREATE TABLE Client
+(id_client int PRIMARY key,
+ password varchar(254),
+ nom varchar(254),
+ prenom varchar(254),
+ email varchar(254),
+ telephone varchar(254))
+ 
+ 
+ CREATE TABLE Categorie
+(id_categorie int PRIMARY key,
+ nom_categorie varchar(254))
+ 
+ CREATE TABLE Produit
+(id_produit int PRIMARY key,
+id_categorie int FOREIGN KEY(id_categorie)REFERENCES Categorie(id_categorie),
+ prix float,
+ disponibilite varchar(254),
+ description_produit varchar(254),
+ durée_preparation int
+)
+ 
+CREATE TABLE Image
+(id_image int PRIMARY key,
+ id_produit int FOREIGN KEY(id_produit)REFERENCES Produit(id_produit),
+nom_image varchar(254))
+ 
+CREATE TABLE Review
+(id_review int PRIMARY key,
+ id_client int FOREIGN KEY(id_client)REFERENCES Client(id_client),
+ id_produit int FOREIGN KEY(id_produit)REFERENCES Produit(id_produit),
+ contenu varchar(254),
+primary key(id_review,id_client,id_produit)
+)
+ 
+ create table Restaurant
+ (
+   id_restaurant int PRIMARY key,
+   nom_restaurant varchar(254),
+   adresse_restaurant varchar(254),
+    telephone_restaurant varchar(254)) 
+ 
+ create table Commande
+ (
+   id_commande int PRIMARY key,
+ id_client int FOREIGN KEY(id_client)REFERENCES Client(id_client),
+ id_restaurant int FOREIGN KEY(id_restaurant)REFERENCES Restaurant(id_restaurant),
+ etat_commande varchar(254),
+ prix_commande float,
+ date_commande date,
+ primary key(id_commande,id_client,id_restaurant)    
+ )
+ 
+  create table Commande_produit
+ (
+   id_commandeProduit int PRIMARY key,
+      id_commande int FOREIGN KEY(id_commande)REFERENCES Commande(id_commande),
+      id_produit int FOREIGN KEY(id_produit)REFERENCES Produit(id_produit),
+     primary key(id_commandeProduit,id_commande,id_produit)    
+ )
+ 
+  create table Categorie_restaurant
+ (
+   id_categorieRestaurant int PRIMARY key,
+   id_categorie int FOREIGN KEY(id_categorie)REFERENCES Categorie(id_categorie),  
+id_restaurant int FOREIGN KEY(id_restaurant)REFERENCES Restaurant(id_restaurant))
+     

@@ -7,6 +7,9 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\categorieController;
+use App\Http\Controllers\CommandeController;
+
+
 
 
 
@@ -14,6 +17,9 @@ use App\Http\Controllers\categorieController;
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\visitors\produit_vController;
 use App\Http\Controllers\visitors\Client_vController;
+use App\Http\Controllers\visitors\restaurant_vController;
+use App\Http\Controllers\visitors\commande_vController;
+use GuzzleHttp\Middleware;
 
 // begin admin routes
 Route::prefix('admin')->group(function () {
@@ -63,24 +69,40 @@ Route::prefix('admin')->group(function () {
             Route::post('store/{id}', [ProduitController::class, 'store'])->name('insert');
             Route::get('/', [ProduitController::class, 'index'])->name('index');
             Route::get('/edit/{id}', [ProduitController::class, 'edit'])->name('edit');
-            Route::post('/update/{id}', [ProduitController::class, 'update'])->name('update');
+            Route::post('/update/{produit}', [ProduitController::class, 'update'])->name('update');
             Route::get('/delete/{id}', [ProduitController::class, 'destroy'])->name('delete');
         });
-    });
+        Route::prefix('commande')->name('commande.')->group(function () {
+            Route::get('/', [CommandeController::class, 'index'])->name('index');
+            Route::get('/delete/{id}', [CommandeController::class, 'destroy'])->name('delete');
+            Route::get('show/{id}', [CommandeController::class, 'show'])->name('show');
+            Route::get('etat/{commande}', [CommandeController::class, 'update_etat'])->name('etat');
 
-    Route::prefix('auth')->name('auth.')->group(function () {
-        Route::get('/', [AdminController::class, 'show'])->name('show');
-        Route::post('update', [AdminController::class, 'update'])->name('update');
-        Route::post('edit', [AdminController::class, 'edit'])->name('edit');
+            Route::prefix('auth')->name('auth.')->group(function () {
+                Route::get('/', [AdminController::class, 'show'])->name('show');
+                Route::post('update', [AdminController::class, 'update'])->name('update');
+                Route::post('edit', [AdminController::class, 'edit'])->name('edit');
+            });
+        });
+
+        Route::prefix('auth')->name('auth.')->group(function () {
+            Route::get('/', [AdminController::class, 'show'])->name('show');
+            Route::get('add', [AdminController::class, 'create'])->name('update');
+            Route::post('store', [AdminController::class, 'store'])->name('insert');
+        });
     });
+    // end admin routes
+
+
 });
-// end admin routes
+
+
 
 // begin visitors routes
 Route::middleware('auth')->group(function () {
     // produitsCard routes 
     Route::prefix('produit')->name('produitC.')->group(function () {
-        Route::get('/', [produit_vController::class, 'index'])->name('show');
+        Route::get('/{id}', [produit_vController::class, 'index'])->name('show');
     });
     // client routes 
 
@@ -89,6 +111,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/update', [Client_vController::class, 'update'])->name('update');
         Route::post('edit', [Client_vController::class, 'edit'])->name('edit');
     });
+
+    Route::get('/rest', [restaurant_vController::class, 'index'])->name('list');
+    Route::get('/commande/{id}', [commande_vController::class, 'store'])->name('c_insert');
 });
 
 //end visitors routes

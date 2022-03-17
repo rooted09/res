@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->onDeleteCascade();
-            $table->foreignId('restaurant_id')->onDeleteCascade();
-            $table->string('etat');
-            $table->float('prix');
+            $table->foreignId('client_id')->references('id')->on('clients')->onDeleteCascade();
+            $table->foreignId('restaurant_id')->references('id')->on('restaurants')->onDeleteCascade();
+            $table->string('etat')->default('commande');
+            $table->float('prix')->default(0);
             $table->timestamps();
         });
     }

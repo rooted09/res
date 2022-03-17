@@ -6,6 +6,7 @@ use App\Models\Produit;
 use App\Models\Categorie;
 use App\Http\Requests\UpdateProduitRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProduitController extends Controller
 {
@@ -17,10 +18,12 @@ class ProduitController extends Controller
     public function index()
     {
         $Produits =  Produit::all();
-        return view('backoffice.produit.index',
-        [
-            'produits' => $Produits
-        ]);
+        return view(
+            'backoffice.produit.index',
+            [
+                'produits' => $Produits
+            ]
+        );
     }
 
     /**
@@ -30,7 +33,7 @@ class ProduitController extends Controller
      */
     public function create($id)
     {
-        return view('backoffice.produit.add',['id'=>$id]);
+        return view('backoffice.produit.add', ['id' => $id]);
     }
 
     /**
@@ -41,32 +44,35 @@ class ProduitController extends Controller
      */
     public function store(Request $request, Categorie $id)
     {
+        $request->validate([
+
+            'name' => 'required|string|max:25',
+            'image' => 'required|image',
+            'prix' => 'required|numeric',
+            'disponibilite' => 'required',
+            'duree' => 'required',
+            'description' => 'required'
+        ]);
+
         $filenameWithExt = $request->file('image')->getClientOriginalName();
         //Get just filename
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
         // Get just ext
         $extension = $request->file('image')->getClientOriginalExtension();
         // Filename to store
-        $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
         // Upload Image
-        $request->image->move(public_path('products'), $fileNameToStore);
-        $request->validate([
-            'name'=> 'required|string|max:25',
-            'prix'=> 'required|numeric',
-             'disponibilite'=> 'required',
-            'duree'=> 'required',
-            'description'=> 'required'
+        $request->file('image')->move(public_path('products'), $fileNameToStore);
+        $produit = Produit::create([
+            'categorie_id' => $id->id,
+            'name' => $request->name,
+            'image' => $fileNameToStore,
+            'prix' => $request->prix,
+            'disponibilite' => $request->disponibilite,
+            'duree_preparation' => $request->duree,
+            'desc' => $request->description
         ]);
-       $produit = Produit::create([
-           'categorie_id'=>$id->id,
-           'name'=> $request->name,
-           'image'=> $filename,
-            'prix'=> $request->prix,
-            'disponibilite'=> $request->disponibilite,
-            'duree_preparation'=> $request->duree,
-            'desc'=> $request->description
-       ]);
-       return redirect()->route('restaurant.show',['id' => $id->restaurant->first()]);
+        return redirect()->route('restaurant.show', ['id' => $id->restaurant->first()]);
     }
 
     /**
@@ -88,8 +94,8 @@ class ProduitController extends Controller
      */
     public function edit($produit)
     {
-        $vid=Produit::find($produit);
-        return view('backoffice.produit.edit',['produit' => $vid]);
+        $vid = Produit::find($produit);
+        return view('backoffice.produit.edit', ['produit' => $vid]);
     }
 
     /**
@@ -99,27 +105,25 @@ class ProduitController extends Controller
      * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request, $produit)
-    {   
+    public function update(Request $request, Produit $produit)
+    {
         $request->validate([
-            'name'=> 'required|string|max:25',
-            'prix'=> 'required|numeric',
-             'disponibilite'=> 'required',
-            'duree'=> 'required',
-            'description'=> 'required'
+            'name' => 'required|string|max:25',
+            'prix' => 'required|numeric',
+            'disponibilite' => 'required',
+            'duree' => 'required',
+            'description' => 'required'
         ]);
-        Produit::find($produit)->update(
+        $produit->update(
             [
-            'categorie_id'=>1,
-            'name'=> $request->name,
-             'prix'=> $request->prix,
-             'disponibilite'=> $request->disponibilite,
-             'duree_preparation'=> $request->duree,
-             'desc'=> $request->description
+                'name' => $request->name,
+                'prix' => $request->prix,
+                'disponibilite' => $request->disponibilite,
+                'duree_preparation' => $request->duree,
+                'desc' => $request->description
             ]
-            );
-    
-            return redirect()->route('produit.index');
+        );
+        return redirect()->route('restaurant.show', ['id' => $produit->categorie->restaurant->first()]);
     }
 
     /**
@@ -130,7 +134,11 @@ class ProduitController extends Controller
      */
     public function destroy($produit)
     {
-        Produit::find($produit)->delete();
-        return redirect()->route('produit.index');
+        $var1 = Produit::find($produit);
+        if (File::exists(public_path('products/' . $var1->image))) {
+            File::delete(public_path('products/' . $var1->image));
+        }
+        $var1->delete();
+        return redirect()->back();
     }
 }
