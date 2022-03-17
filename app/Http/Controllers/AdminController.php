@@ -61,17 +61,17 @@ class AdminController extends Controller
      */
     public function edit(Request $request)
     {
-        $request->validate ([
-           
+        $request->validate([
+
             'password' => ['required', 'string', 'min:8'],
             'confirmed' => ['required', 'same:password'],
 
         ]);
-       
-            Admin::first()->update([
-                'password' => Hash::make($request->password)
-            ]);
-            return redirect()->back()->with('success','bien modifier !!');;
+
+        Admin::first()->update([
+            'password' => Hash::make($request->password)
+        ]);
+        return redirect()->back()->with('success', 'bien modifier !!');
     }
 
     /**
@@ -83,16 +83,17 @@ class AdminController extends Controller
      */
     public function update(Request $request)
 
-       { 
+    {
         Admin::first()->update([
-            'name' => $request->name ,
-            'email'=> $request->email
+            'name' => $request->name,
+            'email' => $request->email
         ]);
 
-        return redirect()->back()->with('success','bien modifier !!');
+        return redirect()->back()->with('success', 'bien modifier !!');
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }
