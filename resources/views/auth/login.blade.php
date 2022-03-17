@@ -59,7 +59,7 @@
                 <div class="user sginUpbx">
 
                     <div class="formBox">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('register') }}" id="from" >
                             <h2>Create an account</h2>
                                 @csrf
                                     <input id="name" type="text" class="input @error('user') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="user" autofocus placeholder="User">
@@ -86,17 +86,19 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                <input id="name" type="text" class="input @error('tele') is-invalid @enderror" name="tele" value="{{ old('tele') }}" required autocomplete="tele" autofocus placeholder="Email">
+                                <input id="name" type="text" class="input @error('tele') is-invalid @enderror" name="tele" value="{{ old('tele') }}" required autocomplete="tele" autofocus placeholder="Tele">
                                         @error('tele')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                        <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
+
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
 
                                     <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="password">
 
@@ -108,18 +110,18 @@
 
                                     <input class="input" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="confirmation password">
 
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" >
                                                  {{ __('Register') }}
                                         </button>
-                                        <p>Already have an account ? <a class="link" onclick="tg();">sign in</a></p>
+
+                          <p>Already have an account ? <a class="link" onclick="tg();">sign in</a></p>
                         </form>
                     </div>
                     <div class="imagBox"><img class="img2" src="{{ asset('img/yes.png') }}" alt="" srcset=""></div>
                 </div>
             </div>
-    </section>
-    <script>
-
+            </section>
+        <script>
     </script>
 </body>
 
