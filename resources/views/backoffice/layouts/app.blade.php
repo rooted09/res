@@ -26,6 +26,9 @@
             <a class="nav-link active" aria-current="page" href="#">Acceuil</a>
             </li>
             <li class="nav-item">
+            <a class="nav-link" href="{{route('commande.index')}}">Commandes</a>
+            </li>
+            <li class="nav-item">
             <a class="nav-link" href="{{route('client.index')}}">Clients</a>
             </li>
             <li class="nav-item">

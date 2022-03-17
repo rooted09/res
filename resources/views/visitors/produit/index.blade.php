@@ -28,7 +28,7 @@
               <h5 class="card-title"> {{$item->prix}}, 00DH</h5>
               <small><i class="far fa-clock"></i> {{$item->duree_preparation}} min</small>
               <br>
-              <a href="{{route('c_insert',['id' => $data->id])}}" class="btn btn-primary text-center mt-3">+</a>
+              <a href="{{route('c_insert',['id' => $item->id])}}" class="btn btn-primary add-commande text-center mt-3">+</a>
             </div>
         </div>
         </div>
@@ -45,10 +45,10 @@
         <div class="card-header" style="background:#00a082;">
             <h5 class="text-light">Commandes Lits</h5>
         </div>
-        <div class="card-body">
-            {{-- @foreach()
-            <p></p>
-            @endforeach --}}
+        <div class="card-body" id="panel">
+           @foreach(Auth::user()->client->produit as $prod_client)
+            <p>{{$prod_client->name}}</p>
+           @endforeach
         </div>
     </div>
 </div>

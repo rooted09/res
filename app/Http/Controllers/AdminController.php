@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -57,9 +59,19 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(Request $request)
     {
-        //
+        $request->validate([
+
+            'password' => ['required', 'string', 'min:8'],
+            'confirmed' => ['required', 'same:password'],
+
+        ]);
+
+        Admin::first()->update([
+            'password' => Hash::make($request->password)
+        ]);
+        return redirect()->back()->with('success', 'bien modifier !!');
     }
 
     /**
@@ -69,12 +81,19 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAdminRequest $request, Admin $admin)
+    public function update(Request $request)
+
     {
-        //
+        Admin::first()->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        return redirect()->back()->with('success', 'bien modifier !!');
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }

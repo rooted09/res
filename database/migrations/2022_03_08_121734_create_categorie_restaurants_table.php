@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('categorie_restaurants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('categorie_id')->onDeleteCascade();
-            $table->foreignId('restaurant_id')->onDeleteCascade();
+            $table->foreignId('categorie_id')->references('id')->on('categories')->onDeleteCascade();
+            $table->foreignId('restaurant_id')->references('id')->on('restaurants')->onDeleteCascade();
             $table->timestamps();
         });
     }

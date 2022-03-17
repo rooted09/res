@@ -15,7 +15,11 @@ class CommandeController extends Controller
      */
     public function index()
     {
-        //
+        $commandes =  Commande::all();
+        return view('backoffice.commande.index',
+        [
+            'commandes' => $commandes
+        ]);
     }
 
     /**
@@ -23,9 +27,10 @@ class CommandeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('backoffice.commande.add',['id'=>$id]);
+
     }
 
     /**
@@ -36,7 +41,6 @@ class CommandeController extends Controller
      */
     public function store(StoreCommandeRequest $request)
     {
-        //
     }
 
     /**
@@ -47,7 +51,11 @@ class CommandeController extends Controller
      */
     public function show(Commande $commande)
     {
-        //
+        
+       $commd= Commande::find($commande);
+       return view('backoffice.commande.show',[
+           'commande' => $commd
+       ]);
     }
 
     /**
@@ -70,7 +78,25 @@ class CommandeController extends Controller
      */
     public function update(UpdateCommandeRequest $request, Commande $commande)
     {
-        //
+        
+        
+
+    }
+    public function update_etat(Commande $commande)
+    {
+        $newetat = '';
+        $etat = $commande->etat;
+        $etat == 'commande'?$newetat ='prepare':'';
+        $etat == 'prepare'?$newetat ='delivrer':'';
+        $etat == 'delivrer'?$newetat ='confirmer':'';
+        $etat == 'confirmer'?$newetat ='confirmer':'';
+
+        $commande->update([
+            'etat' => $newetat
+        ]);
+
+        return redirect()->back();
+
     }
 
     /**
@@ -81,6 +107,8 @@ class CommandeController extends Controller
      */
     public function destroy(Commande $commande)
     {
-        //
+        
+        Commande::find($commande)->delete();
+        return redirect()->back();
     }
 }

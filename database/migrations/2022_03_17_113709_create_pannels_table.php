@@ -11,11 +11,12 @@ return new class extends Migration
      *
      * @return void
      */
+
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('pannels', function (Blueprint $table) {
             $table->id();
-            $table->string('src');
+            $table->foreignId('client_id')->onDeleteCascade();
             $table->foreignId('produit_id')->onDeleteCascade();
             $table->timestamps();
         });
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('pannels');
     }
 };
