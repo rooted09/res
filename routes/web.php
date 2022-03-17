@@ -7,6 +7,9 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\categorieController;
+use App\Http\Controllers\CommandeController;
+
+
 
 
 // Admin Controllers
@@ -65,9 +68,20 @@ Route::prefix('admin')->group(function()   {
         Route::get('/', [ProduitController::class,'index'])->name('index');
         Route::get('/edit/{id}',[ProduitController::class,'edit'])->name('edit');
         Route::post('/update/{produit}',[ProduitController::class,'update'])->name('update');
-        Route::get('/delete/{id}',[ProduitController::class,'destroy'])->name('delete');});
+        Route::get('/delete/{id}',[ProduitController::class,'destroy'])->name('delete');
     });
+    Route::prefix('commande')->name('commande.')->group(function(){
+        Route::get('/', [CommandeController::class,'index'])->name('index');
+        Route::get('/delete/{id}',[CommandeController::class,'destroy'])->name('delete');
+        Route::get('show/{id}', [CommandeController::class,'show'])->name('show');
+        Route::get('etat/{commande}', [CommandeController::class,'update_etat'])->name('etat');
 
+
+
+
+    });
+    });
+   
     Route::prefix('auth')->name('auth.')->group(function(){
         Route::get('/', [AdminController::class,'show'])->name('show');
         Route::get('add', [AdminController::class,'create'])->name('update');  
@@ -87,7 +101,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/rest', [restaurant_vController::class,'index'])->name('list'); 
     Route::get('/commande/{id}', [commande_vController::class,'store'])->name('c_insert'); 
 
-});
+}); 
 //end visitors routes
 
 

@@ -20,4 +20,12 @@ class Commande extends Model
     {
         return $this->belongsToMany(Produit::class, 'commande_produits', 'commande_id', 'produit_id');
     }
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
 }

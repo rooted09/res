@@ -20,5 +20,9 @@ class Client extends Model
     {
         return $this->hasOne(User::class);
     }
+    public function commande()
+    {
+        return $this->hasOne(User::class);
+    }
    
 }
