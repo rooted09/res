@@ -77,18 +77,12 @@ Route::prefix('admin')->group(function () {
             Route::get('/delete/{id}', [CommandeController::class, 'destroy'])->name('delete');
             Route::get('show/{id}', [CommandeController::class, 'show'])->name('show');
             Route::get('etat/{commande}', [CommandeController::class, 'update_etat'])->name('etat');
-
-            Route::prefix('auth')->name('auth.')->group(function () {
-                Route::get('/', [AdminController::class, 'show'])->name('show');
-                Route::post('update', [AdminController::class, 'update'])->name('update');
-                Route::post('edit', [AdminController::class, 'edit'])->name('edit');
-            });
         });
 
         Route::prefix('auth')->name('auth.')->group(function () {
             Route::get('/', [AdminController::class, 'show'])->name('show');
-            Route::get('add', [AdminController::class, 'create'])->name('update');
-            Route::post('store', [AdminController::class, 'store'])->name('insert');
+            Route::post('update', [AdminController::class, 'update'])->name('update');
+            Route::post('edit', [AdminController::class, 'edit'])->name('edit');
         });
     });
     // end admin routes
