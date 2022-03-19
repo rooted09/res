@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categorie_restaurants', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('categorie_id')->references('id')->on('categories')->onDelete('Cascade');
-            $table->foreignId('restaurant_id')->references('id')->on('restaurants')->onDelete('Cascade');
+            $table->string('src');
+            $table->foreignId('produit_id')->onDeleteCascade();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorie_restaurants');
+        Schema::dropIfExists('images');
     }
 };

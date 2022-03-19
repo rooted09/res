@@ -1,0 +1,2 @@
+
+    @comments(['model' => $restaurant])

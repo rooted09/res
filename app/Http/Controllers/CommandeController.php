@@ -41,6 +41,7 @@ class CommandeController extends Controller
      */
     public function store(StoreCommandeRequest $request)
     {
+        
     }
 
     /**
@@ -105,7 +106,7 @@ class CommandeController extends Controller
      * @param  \App\Models\Commande  $commande
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Commande $commande)
+    public function destroy($commande)
     {
         
         Commande::find($commande)->delete();

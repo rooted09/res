@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Laravelista\Comments\Commentable;
 class Restaurant extends Model
 {
-    use HasFactory;
+    use HasFactory, Commentable;
     protected $fillable = ['name','adresse','tele'];
 
     /**

@@ -39,7 +39,7 @@
 
 <table class="table">
     <thead class="table-danger">
-        <tr >
+        <tr>
         
             <th>id</th>
              <th>name</th>

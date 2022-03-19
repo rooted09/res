@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('commande_produits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('commande_id')->references('id')->on('commandes')->onDeleteCascade();
-            $table->foreignId('produit_id')->references('id')->on('produits')->onDeleteCascade();
+            $table->integer('quantite');
+            $table->foreignId('commande_id')->references('id')->on('commandes')->onDelete('Cascade');
+            $table->foreignId('produit_id')->references('id')->on('produits')->onDelete('Cascade');
             $table->timestamps();
         });
     }

@@ -28,7 +28,7 @@
               <h5 class="card-title"> {{$item->prix}}, 00DH</h5>
               <small><i class="far fa-clock"></i> {{$item->duree_preparation}} min</small>
               <br>
-              <a href="{{route('c_insert',['id' => $item->id])}}" class="btn btn-primary add-commande text-center mt-3">+</a>
+              <a href="{{route('AddToCart',['produit'=>$item])}}" class="btn btn-primary add-commande text-center mt-3">+</a>
             </div>
         </div>
         </div>
@@ -46,9 +46,16 @@
             <h5 class="text-light">Commandes Lits</h5>
         </div>
         <div class="card-body" id="panel">
-           @foreach(Auth::user()->client->produit as $prod_client)
-            <p>{{$prod_client->name}}</p>
-           @endforeach
+            @if($card->getDetails()->get('items')->count() > 0)
+            @foreach($card->getDetails()->get('items') as $cart)
+            <p>({{$cart->get('quantity')}} x ) | {{$cart->get('title')}}</p>
+            @endforeach
+            <p>{{$card->getItemsSubtotal()}} DH</p>
+            <a class="btn btn-success" href="{{route('c_insert',['id'=>$data->id])}}">Commander</a>
+            <a class="btn btn-dark" href="{{route('deleteCard')}}">Annuler</a>
+            @else
+            <p>Choisir un produit</p>
+            @endif
         </div>
     </div>
 </div>
