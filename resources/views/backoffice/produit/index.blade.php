@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.app')
 @section('content')
 <div class="container">
-<a class="btn btn-success mt-5 mb-5 ml-auto" href="{{route('produit.add')}}">Ajouter</a>
+<a class="btn btn-success mt-5 mb-5 ml-auto" href="{{route('produit.add')}}">Add</a>
 
 <table class="table table-striped table-bordered text-center">
     
@@ -11,8 +11,8 @@
             <th>Name</th>
             <th>Categorier_id  </th>
             <th>Description  </th>
-            <th>Prix</th>
-            <th>Duree Preparation</th>
+            <th>Price</th>
+            <th>Preparation Period</th>
             <th>Action</th>
            
 

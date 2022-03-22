@@ -64,33 +64,43 @@
     <!-- Navigation -->
     <ul class="accordion ms-main-aside fs-14" id="side-nav-accordion">
       <!-- Dashboard -->
-      <li class="menu-item">
-        <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false"
-          aria-controls="dashboard"> <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
+     
+
+      <li class="menu-item text-danger">
+        <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="true" aria-controls="dashboard">
+          <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
         </a>
         <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
-          <li> <a href="index-2.html">Costic</a>
+          <li> <a href="{{route('home.home')}}">Costic</a>
           </li>
         </ul>
       </li>
       <!-- /Dashboard -->
       <!-- product -->
+      <li class="menu-item  text-danger">
+     <a href="{{route('restaurant.index')}}" ><i class="fa fa-utensils"></i> Restaurant Management</a>
+
+      </li>
+       <!-- Admin -->
+      <li class="menu-item"> 
+       <a  href="{{route('client.index')}}"><i class="fa fa-users"></i> Customer  Management</a>
+      </li>
+      <li class="menu-item"> 
+       <a  href="{{route('commande.index')}}"><i class="fas fa-clipboard-list fs-16"></i> Order MAnagement</a>
+      </li>
+      
       <li class="menu-item">
-        <a href="#" class="has-chevron" data-toggle="collapse" data-target="#product" aria-expanded="false"
-          aria-controls="product"> <span><i class="fa fa-archive fs-16"></i>Menus </span>
+        <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false"
+          aria-controls="dashboard"> <span><i class="material-icons fs-16"></i>Admin</span>
         </a>
-        <ul id="product" class="collapse" aria-labelledby="product" data-parent="#side-nav-accordion">
-          <li> <a href="pages/product/productcata.html">Gestion Des restaurants</a>
-          </li>
-          <li> <a href="pages/product/productlist.html">Gestion des clients</a>
-          </li>
-          <li> <a href="pages/product/productgrid.html">Gsetion des produits</a>
-          </li>
-          <li> <a href="pages/product/addproduct.html">Gestion des categorie</a>
-          </li>
-          <li> <a href="pages/product/productdetail.html">gestion des commandes</a>
-          </li>
-        
+        <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
+          <li class="menu-item"> 
+            <a  href="{{route('auth.show')}}"><i  class="fas fa-user-friends fs-16"></i>Modify Admin</a>
+           </li>
+           {{-- <li class="menu-item">
+            <a  href="{{route('authc.update')}}">  Modify User</a>
+           </li> --}}
+     
         </ul>
       </li>
       <!-- product end -->
@@ -550,7 +560,7 @@
               </a>
             </li>
             <li class="dropdown-menu-footer">
-              <a class="media fs-14 p-2" href="pages/prebuilt-pages/default-login.html"> <span><i
+              <a class="media fs-14 p-2" href="{{route('admin.login')}}"> <span><i
                     class="flaticon-shut-down mr-2"></i> Logout</span>
               </a>
             </li>

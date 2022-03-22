@@ -13,6 +13,7 @@ use App\Http\Controllers\CommandeController;
 
 
 
+
 // Admin Controllers
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\visitors\produit_vController;
@@ -30,7 +31,8 @@ Route::prefix('admin')->group(function () {
 
 
     Route::middleware('auth:admin')->group(function () {
-
+        Route::get('/', [DashboardController::class, 'index']);
+        Route::get('/dashboad', [DashboardController::class, 'index'])->name('home.home');
         // restaurant routes
         Route::prefix('restaurant')->name('restaurant.')->group(function () {
             Route::get('add', [RestaurantController::class, 'create'])->name('add');
@@ -98,7 +100,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('auth')->name('authc.')->group(function () {
         Route::get('/', [Client_vController::class, 'index'])->name('show');
-        Route::post('/update', [Client_vController::class, 'update'])->name('update');
+        Route::get('/update', [Client_vController::class, 'update'])->name('update');
         Route::post('edit', [Client_vController::class, 'edit'])->name('edit');
         
     Route::get('/commande/{id}', [commande_vController::class, 'store'])->name('c_insert');

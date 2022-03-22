@@ -1,7 +1,7 @@
 @extends('backoffice.layouts.app')
 @section('content')
-@section('table','restaurants')
-@section('subtable',$restaurant->name)
+{{-- @section('table','restaurants')
+@section('subtable',$restaurant->name) --}}
 
 @if(Session::has('success'))
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -22,43 +22,60 @@
     </div>
   </div>
 @endif
-    <div class="mt-2">
-        <div class="card" style="max-width: 700px; margin: auto">
-            <div class="card-header">
-              {{$restaurant->created_at->diffForHumans()}}
+    <div class="mt-9">
+        <div class="card mb-4" style="max-width: 500px; margin: auto ">
+            <div class="card-header text-white bg-danger">
+              <i class="fa fa-clock-rotate-left text-white"></i>  <strong>{{$restaurant->created_at->diffForHumans()}} </strong>
             </div>
             <div class="card-body">
-              <h5 class="card-title">{{$restaurant->name}}</h5>
-              <p class="card-text">{{$restaurant->adresse}}</p>
-              <p class="card-text">{{$restaurant->tele}}</p>
+              <h5 class="card-title text-center"> <strong> {{$restaurant->name}} <strong> </h5>
+              <p class="card-text ml-5">  <i class="fa fa-location-dot text-danger"></i>  {{$restaurant->adresse}}</p>
+              <p class="card-text ml-5">  <i class="fa-solid fa-phone text-success"></i>   {{$restaurant->tele}}</p>
              
             </div>
-         
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success ">Add Category ({{$restaurant->categorie->count()}}) +</a>
           </div>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success mt-3">Ajouter Categorie +</a>
+         
           @foreach ($restaurant->categorie as $item)
         @include('backoffice.restaurant.edit_modal')
-          <div class="text-center text-muted p-4">{{$item->name}} 
-            <a data-bs-toggle="modal" data-bs-target="#edit_Modal{{$item->id}}" class="ml-4 text-secondary" data-id="{{$item->id}}"><i class="fa-solid fa-pen-to-square"></i></a> 
-            | <a href="{{route('categorie.delete',['categorie'=> $item])}}" class="text-danger"><i class="fa-solid fa-xmark"></i></a></div>
-            <br>
-            <a href="{{route('produit.add',['id'=>$item])}}" class="btn btn-secondary">Produit +</a>
-            <div class="row">
-              @foreach ($item->produit as $product)
-            <div class="col-sm-4">
-              <div class="card mt-3">
-                <div class="card-body">
-                  <h5 class="card-title">{{$product->name}}</h5>
-                  <p class="card-text">{{$product->prix}}.00 DH</p>
-                  <p class="card-text">{{$product->created_at->diffForHumans()}}</p>
-                  <a href="{{route('produit.delete',['id'=>$product->id])}}" class="btn btn-danger">Supprimer</a>
-                  <a href="{{route('produit.edit',['id'=>$product->id])}}" class="btn btn-light">Modifier</a>
-                </div>
-              </div>
-            </div>
-            @endforeach
+        <div class="shadow p-3 ml-0 mr-0 bg-body rounded  mb-2 row" style="position: relative;overflow: hidden"> 
+          <div class="col-sm-6">
+            <h4 class="d-inline"> {{$item->name}}  </h4>
+            <a data-bs-toggle="modal" data-bs-target="#edit_Modal{{$item->id}}" class="ml-4 text-secondary d-inline" data-id="{{$item->id}}"><i class="fa-solid fa-pen"></i></a> 
+            | <a href="{{route('categorie.delete',['categorie'=> $item])}}" class="text-danger d-inline"><i class="fa-solid fa-trash text-danger"></i></a>
           </div>
-              
+          <div class="col-sm-6 text-right">
+            <h4 class="d-inline bg-success" 
+            style="position: absolute;right: -34px;bottom: -32px;padding: 20px 27px;border-top-left-radius: 84px;"
+            ><a href="{{route('produit.add',['id'=>$item])}}" class="text-light rounded-pill d-inline">Product  <i class="fa-solid fa-circle-plus"></i></a></h4>
+          </div>
+        </div>
+
+          <div class="row">
+            @foreach ($item->produit as $product)
+            <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="ms-card"> 
+              <div class="ms-card-img">
+                <img src="{{asset('products/burger_1647783525.png')}}" alt="card_img">
+              </div>
+              <div class="ms-card-body ">
+                <div class="wrapper-new2">
+                  <h6>{{$product->name}}</h6>
+                  <span class="white">{{$product->created_at->diffForHumans()}}</span>
+                 
+                </div>
+                <div class="wrapper-new1">
+                  <span>Prix :<strong class="color-red">{{$product->prix}}.00 DH</strong> </span>
+                
+                </div>
+                <div class="wrapper-new2">
+                <a href="{{route('produit.delete',['id'=>$product->id])}}" class="btn btn-primary btn-block col-md-6">Delete</a> 
+                <a href="{{route('produit.edit',['id'=>$product->id])}}" class="btn btn-primary btn-dark">Modify</a>
+              </div>
+              </div> 
+            </div>
+          </div>  @endforeach  </div>
+          
     @endforeach
 
     @include('backoffice.restaurant.modal')
