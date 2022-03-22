@@ -9,10 +9,6 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\categorieController;
 use App\Http\Controllers\CommandeController;
 
-
-
-
-
 // Admin Controllers
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\visitors\produit_vController;
@@ -86,8 +82,6 @@ Route::prefix('admin')->group(function () {
         });
     });
     // end admin routes
-
-
 });
 
 
@@ -101,8 +95,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/update', [Client_vController::class, 'update'])->name('update');
         Route::post('edit', [Client_vController::class, 'edit'])->name('edit');
         
-    Route::get('/commande/{id}', [commande_vController::class, 'store'])->name('c_insert');
     });
+
+    Route::get('/commande/{id}', [commande_vController::class, 'store'])->name('c_insert');
+
 });
 
 

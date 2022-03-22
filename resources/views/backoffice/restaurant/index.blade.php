@@ -58,7 +58,7 @@
             <td>{{$restaurant->tele}}</td>
             <td> <a class="btn btn-secondary" href="{{route('restaurant.show',['id' => $restaurant->id])}}">show</a>
             <a class="btn btn-primary"  href="{{route('restaurant.edit',['id' => $restaurant->id])}}">Edit</a>
-            <a class="btn btn-danger" href="{{route('restaurant.delete',['id' => $restaurant->id])}}">delete</a> </td>
+            <a class="btn btn-danger" onclick="return confirm('Are you sure ??')" href="{{route('restaurant.delete',['id' => $restaurant->id])}}">delete</a> </td>
    
           
             <tr>

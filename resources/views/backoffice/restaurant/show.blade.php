@@ -51,7 +51,7 @@
                   <h5 class="card-title">{{$product->name}}</h5>
                   <p class="card-text">{{$product->prix}}.00 DH</p>
                   <p class="card-text">{{$product->created_at->diffForHumans()}}</p>
-                  <a href="{{route('produit.delete',['id'=>$product->id])}}" class="btn btn-danger">Supprimer</a>
+                  <a href="{{route('produit.delete',['id'=>$product->id])}}" onclick="return confirm('Are you sure ??')" class="btn btn-danger">Supprimer</a>
                   <a href="{{route('produit.edit',['id'=>$product->id])}}" class="btn btn-light">Modifier</a>
                 </div>
               </div>

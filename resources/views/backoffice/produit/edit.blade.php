@@ -1,9 +1,13 @@
 @extends('backoffice.layouts.app')
 @section('content')
-<form action="{{route('produit.update',['produit' => $produit])}}" method="post">
+<form action="{{route('produit.update',['produit' => $produit])}}" method="post" enctype="multipart/form-data">
     @csrf
     <td><input type="hidden" name="id" value="{{$produit->id}}" />
-        <div class="mb-3">
+      <div class="mb-3">
+        <label for="formFile" class="form-label"></label>
+        <input class="form-control" name="image"  type="file" onchange="previewImage(event)" id="formFile">
+      </div>
+      <div class="mb-3">
             <label for="exampleFormControlInput1"  class="form-label">Name</label>
             <input type="text" class="form-control" value="{{$produit->name}}" name='name' id="name" >
           </div>

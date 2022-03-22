@@ -109,11 +109,28 @@ class ProduitController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:25',
+            'image' => 'image',
             'prix' => 'required|numeric',
             'disponibilite' => 'required',
             'duree' => 'required',
             'description' => 'required'
         ]);
+      
+        if($request->file('image')) {
+            if (File::exists(public_path('products/' . $produit->image))) {
+                File::delete(public_path('products/' . $produit->image));
+            }
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            //Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload Image
+            $request->file('image')->move(public_path('products'), $fileNameToStore);
+            $produit->update(['image' => $fileNameToStore]);
+        }
         $produit->update(
             [
                 'name' => $request->name,

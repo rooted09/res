@@ -28,7 +28,7 @@
                <td>{{$produit->duree_preparation}}</td>
              
                <td>
-                <a class="btn btn-danger" href="{{route('produit.delete',['id'=>$produit->id])}}">Delete</a>
+                <a class="btn btn-danger" href="{{route('produit.delete',['id'=>$produit->id])}}" onclick="return confirm('Are you sure ??')">Delete</a>
                <a class="btn btn-secondary" href="{{route('produit.edit',['id'=>$produit->id])}}">Update</a>
                </td>
         
