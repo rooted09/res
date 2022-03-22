@@ -10,33 +10,34 @@
               <div class="col-sm-6">
                     <div class="card">
                         <div class="card-header">
-                        <h3>Restaurant</h3>
+                        <h3><i class="fa fa-utensils text-danger"></i>Restaurant</h3>
                         </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{$commande->restaurant->name}}</h5>
-                        <div class="card-text">{{$commande->restaurant->adresse}}</div>
+                        <h5 class="card-title"></i>{{$commande->restaurant->name}}</h5>
+                        <div class="card-text"><i class="fa fa-location-dot text-danger"> </i> {{$commande->restaurant->adresse}}</div>
+                        <div class="card-text"><i class="fa-solid fa-phone text-success"></i> {{$commande->restaurant->tele}}</div>
                     </div>     
                 </div> 
               </div>
               <div class="col-sm-6">
                 <div class="card">
                     <div class="card-header">
-                    <h3>Client</h3>
+                    <h3><i class="fa fa-user text-danger"></i> Customer</h3>
                     </div>
                 <div class="card-body">
                     <h5 class="card-title">{{$commande->client->name}}</h5>
-                    <div class="card-text">{{$commande->client->tele}}</div>
+                    <div class="card-text"><i class="fa-solid fa-phone text-success"></i>{{$commande->client->tele}}</div>
                 </div>  
               </div>
               </div>
           </div>  
 
-          <div class="row">
+          {{-- <div class="row">
              @foreach($commande->produit as $prod)
               <div class="col-sm-4">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Produits</h3>
+                        <h3>Product</h3>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">{{$prod->name}}</h3>  
@@ -46,7 +47,7 @@
                 </div>         
                 </div>
               @endforeach
-          </div>
+          </div> --}}
 
 
 

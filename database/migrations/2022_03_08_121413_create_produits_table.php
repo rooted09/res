@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('categorie_id')->references('id')->on('categories')->onDeleteCascade();
+            $table->foreignId('categorie_id')->references('id')->on('categories')->onDelete('Cascade');
             $table->string('desc');
             $table->float('prix');
             $table->time('duree_preparation');
