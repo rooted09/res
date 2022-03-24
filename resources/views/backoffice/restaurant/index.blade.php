@@ -26,9 +26,9 @@
             <td>{{$restaurant->name}}</td>
             <td>{{$restaurant->adresse}}</td>
             <td>{{$restaurant->tele}}</td>
-            <td> <a class="btn btn-secondary" href="{{route('restaurant.show',['id' => $restaurant->id])}}">show</a>
-            <a class="btn btn-primary"  href="{{route('restaurant.edit',['id' => $restaurant->id])}}">Edit</a>
-            <a class="btn btn-danger" onclick="return confirm('Are you sure ??')" href="{{route('restaurant.delete',['id' => $restaurant->id])}}">delete</a> </td>
+            <td> <a class="text-danger" href="{{route('restaurant.show',['id' => $restaurant->id])}}"><i class="fa fa-eye"></i></a>
+            <a class="text-danger"  href="{{route('restaurant.edit',['id' => $restaurant->id])}}"><i class="fa fa-pen"></i></a>
+            <a class="text-danger" onclick="return confirm('Are you sure ??')" href="{{route('restaurant.delete',['id' => $restaurant->id])}}"><i class="fa fa-trash"></i></a> </td>
    
           
             <tr>
