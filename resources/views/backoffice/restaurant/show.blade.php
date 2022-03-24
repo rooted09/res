@@ -35,7 +35,16 @@
             </div>
             <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success ">Add Category ({{$restaurant->categorie->count()}}) +</a>
           </div>
-         
+          <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+            <option value="AL">Alabama</option>
+          
+            <option value="WY">Wyoming</option>
+          </select>
+          <script>
+            $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+          </script>
           @foreach ($restaurant->categorie as $item)
         @include('backoffice.restaurant.edit_modal')
         <div class="shadow p-3 ml-0 mr-0 bg-body rounded  mb-2 row" style="position: relative;overflow: hidden"> 

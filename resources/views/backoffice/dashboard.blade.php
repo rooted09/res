@@ -33,8 +33,8 @@
         <span class="ms-chart-label bg-black"><i class="material-icons">arrow_upward</i> 12.5%</span>
         <div class="ms-card-body media">
           <div class="media-body">
-            <span class="black-text"><strong>New Users</strong></span>
-            <h2>7,333</h2>
+            <span class="black-text"><strong>All Users</strong></span>
+            <h2>{{$clients->count()}}</h2>
           </div>
         </div>
         <canvas id="line-chart-3" width="327" height="162" style="display: block; height: 130px; width: 262px;" class="chartjs-render-monitor"></canvas>
@@ -83,7 +83,7 @@
                 @endforeach
                 @else
                 <tr>
-                  <td>No Data</td>
+                  <strong><td colspan="7" class="text-center text-danger ">No Data</td></strong>
                 </tr>
                 @endif
               </tbody>

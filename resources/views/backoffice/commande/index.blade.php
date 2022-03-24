@@ -105,13 +105,13 @@
                <td>{{$commande->client->name}}</td>
                <td>{{$commande->restaurant->name}}</td>
                @if($commande->etat == "commande")
-               <td><a href="{{route('commande.etat',['commande' => $commande])}}" class="btn btn-secondary"> {{$commande->etat}} ...</a></td>
+               <td><a href="{{route('commande.etat',['commande' => $commande])}}" class="btn btn-secondary"> <i class="fa fa-info"></i>  {{$commande->etat}} </a></td>
                @endif
                @if($commande->etat == "prepare")
-               <td><a href="{{route('commande.etat',['commande' => $commande])}}" class="btn btn-warning"> {{$commande->etat}} ...</a></td>
+               <td><a href="{{route('commande.etat',['commande' => $commande])}}" class="btn btn-warning"><i class="fa fa-recycle"></i>  {{$commande->etat}}</a></td>
                @endif
                @if($commande->etat == "delivrer")
-               <td><a href="{{route('commande.etat',['commande' => $commande])}}" class="btn btn-info"> {{$commande->etat}} ...</a></td>
+               <td><a href="{{route('commande.etat',['commande' => $commande])}}" class="btn btn-info"><i class="fa fa-moped"></i>  {{$commande->etat}} </a></td>
                @endif
                @if($commande->etat == "confirmer")
                <td><a href="{{route('commande.etat',['commande' => $commande])}}" class="btn btn-success"><i class="fa fa-check"></i> {{$commande->etat}} </a></td>

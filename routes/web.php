@@ -106,7 +106,7 @@ Route::middleware('auth')->group(function () {
 
 
     // produitsCard routes 
-    Route::prefix('produit')->name('produitC.')->group(function () {
+    Route::prefix('Restaurant')->name('produitC.')->group(function () {
         Route::get('/{id}', [produit_vController::class, 'index'])->name('show');
     });
     Route::get('/rest', [restaurant_vController::class, 'index'])->name('list');

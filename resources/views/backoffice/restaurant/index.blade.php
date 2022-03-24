@@ -9,20 +9,17 @@
 <table  class="table w-100 thead-primary dataTable no-footer" role="grid"  style="width: 1098px;">
     
     <thead class="bg-danger text-white">
-        <tr role="row">
-        <th> ID</th>
+    <tr role="row">
         <th > Name</th>
         <th >Address</th>
         <th >Phone Number</th>
         <th >Action</th>
-      
-         </tr>
+    </tr>
     </thead>
     <tbody>
         @foreach($restaurants as $restaurant)
         <tr>
            
-            <td>{{$restaurant->id}}</td>
             <td>{{$restaurant->name}}</td>
             <td>{{$restaurant->adresse}}</td>
             <td>{{$restaurant->tele}}</td>

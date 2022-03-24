@@ -58,6 +58,7 @@ class ClientController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        
         Client::create([
             'name' => $request->name,
             'prenom' => $request->prenom,

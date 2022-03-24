@@ -77,32 +77,37 @@
       </li>
       <!-- /Dashboard -->
       <!-- product -->
-      <li class="menu-item  text-danger">
-     <a href="{{route('restaurant.index')}}" ><i class="fa fa-utensils"></i> Restaurant Management</a>
+      <li class="menu-item text-danger">
+        <a href="#" class="has-chevron" data-toggle="collapse" data-target="#restaurant" aria-expanded="true" aria-controls="restaurant">
+          <span><i class="material-icons fs-16">restaurant</i>Restaurant Management </span>
+        </a>
+        <ul id="restaurant" class="collapse" aria-labelledby="restaurant" data-parent="#side-nav-accordion">
+          <li> <a href="{{route('restaurant.index')}}">Add Restaurant</a>
+          </li>
+        </ul>
+      </li>
 
-      </li>
-       <!-- Admin -->
-      <li class="menu-item"> 
-       <a  href="{{route('client.index')}}"><i class="fa fa-users"></i> Customer  Management</a>
-      </li>
+
       <li class="menu-item"> 
        <a  href="{{route('commande.index')}}"><i class="fas fa-clipboard-list fs-16"></i> Order MAnagement</a>
       </li>
-      
-      <li class="menu-item">
+      <li class="menu-item"> 
+        <a  href="{{route('client.index')}}"><i class="fas fa-clipboard-list fs-16"></i> Customer Management </a>
+       </li>
+      {{-- <li class="menu-item">
         <a href="#" class="has-chevron" data-toggle="collapse" data-target="#dashboard" aria-expanded="false"
           aria-controls="dashboard"> <span><i class="material-icons fs-16"></i>Admin</span>
         </a>
         <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
           <li class="menu-item"> 
             <a  href="{{route('auth.show')}}"><i  class="fas fa-user-friends fs-16"></i>Modify Admin</a>
-           </li>
+           </li> --}}
            {{-- <li class="menu-item">
             <a  href="{{route('authc.update')}}">  Modify User</a>
            </li> --}}
-     
+{{--      
         </ul>
-      </li>
+      </li> --}}
       <!-- product end -->
       <!-- orders -->
       {{-- <li class="menu-item">
@@ -451,13 +456,13 @@
       <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">
         <li class="ms-nav-item ms-search-form pb-0 py-0">
           <form class="ms-form" method="post">
-            <div class="ms-form-group my-0 mb-0 has-icon fs-14">
+            {{-- <div class="ms-form-group my-0 mb-0 has-icon fs-14">
               <input type="search" class="ms-form-input" name="search" placeholder="Search here..." value=""> <i
                 class="flaticon-search text-disabled"></i>
-            </div>
+            </div> --}}
           </form>
         </li>
-        <li class="ms-nav-item dropdown"> <a href="#" class="text-disabled ms-has-notification" id="mailDropdown"
+        {{-- <li class="ms-nav-item dropdown"> <a href="#" class="text-disabled ms-has-notification" id="mailDropdown"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-mail"></i></a>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="mailDropdown">
             <li class="dropdown-menu-header">
@@ -495,8 +500,8 @@
             <li class="dropdown-menu-footer text-center"> <a href="pages/apps/email.html">Go to Inbox</a>
             </li>
           </ul>
-        </li>
-        <li class="ms-nav-item dropdown"> <a href="#" class="text-disabled ms-has-notification"
+        </li> --}}
+        {{-- <li class="ms-nav-item dropdown"> <a href="#" class="text-disabled ms-has-notification"
             id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
               class="flaticon-bell"></i></a>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
@@ -531,7 +536,7 @@
             <li class="dropdown-menu-footer text-center"> <a href="#">View all Notifications</a>
             </li>
           </ul>
-        </li>
+        </li> --}}
 
         <li class="ms-nav-item ms-nav-user dropdown">
           <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -543,22 +548,22 @@
             </li>
             <li class="dropdown-divider"></li>
             <li class="ms-dropdown-list">
-              <a class="media fs-14 p-2" href="pages/prebuilt-pages/user-profile.html"> <span><i
+              <a class="media fs-14 p-2" href="{{route('auth.show')}}"> <span><i
                     class="flaticon-user mr-2"></i> Profile</span>
               </a>
-              <a class="media fs-14 p-2" href="pages/apps/email.html"> <span><i class="flaticon-mail mr-2"></i>
+              {{-- <a class="media fs-14 p-2" href="pages/apps/email.html"> <span><i class="flaticon-mail mr-2"></i>
                   Inbox</span> <span class="badge badge-pill badge-info">3</span>
               </a>
               <a class="media fs-14 p-2" href="pages/prebuilt-pages/user-profile.html"> <span><i
                     class="flaticon-gear mr-2"></i> Account Settings</span>
-              </a>
+              </a> --}}
             </li>
             <li class="dropdown-divider"></li>
-            <li class="dropdown-menu-footer">
+            {{-- <li class="dropdown-menu-footer">
               <a class="media fs-14 p-2" href="pages/prebuilt-pages/lock-screen.html"> <span><i
                     class="flaticon-security mr-2"></i> Lock</span>
               </a>
-            </li>
+            </li> --}}
             <li class="dropdown-menu-footer">
               <a class="media fs-14 p-2" href="{{route('admin.login')}}"> <span><i
                     class="flaticon-shut-down mr-2"></i> Logout</span>

@@ -11,7 +11,7 @@
 <table  class="table w-100 thead-primary dataTable no-footer" role="grid"  style="width: 1098px;">
     <thead class="bg-danger text-white">
         <tr role="row">
-            <th>Id </th>
+          
             <th>User Name</th>
             <th>Last Name</th>
             <th>First Name </th>
@@ -24,7 +24,7 @@
    @if($clients->count() > 0)
    @foreach($clients as $client)  
            <tr>
-               <td>{{$client->id}}</td>
+              
                <td>{{$client->user->name}}</td>
                <td>{{$client->name}}</td>
                <td>{{$client->prenom}}</td>

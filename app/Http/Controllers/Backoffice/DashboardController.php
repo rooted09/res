@@ -12,11 +12,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $Clients = Client::all();
         $commande = Commande::whereDate('created_at', now());
         $Client = Client::whereDate('created_at', now());
         return view('backoffice.dashboard', [
             'commande' => $commande,
-            'client' => $Client
+            'client' => $Client,
+            'clients' => $Clients
         ]);
     }
 }
