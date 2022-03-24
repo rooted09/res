@@ -28,7 +28,7 @@
     </div>
   </div>
 @endif
-<div class="card">
+{{-- <div class="card">
     <div class="card-body">
         <form action="{{route('auth.update')}}" method="post" enctype="multipart/form-data">
             @csrf
@@ -49,6 +49,46 @@
         </form>
         @include('backoffice.auth.edit')
     </div>
-</div>
+</div> --}}
+
+
+<div class="col-xl-6 col-md-12">
+  <div class="ms-panel ms-panel-fh">
+
+    <div class="ms-panel-body">
+      <form action="{{route('auth.update')}}" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="form-row">
+          <div class="col-md-7 mb-3">
+            
+              <label for="exampleFormControlInput1"  class="form-label font-truncate text-dark "><strong>Name :</strong></label>
+            <div class="input-group">
+              <input type="text" class="form-control rounded-pill" value="{{Auth::guard('admin')->user()->name}}" name='name' >
+            
+            </div>
+          </div>
+
+          <div class="col-md-7 mb-3">
+            <label for="exampleFormControlInput1" class="form-label font-truncate text-dark"><strong>E-mail :</strong></label>
+            <div class="input-group">
+              <input type="text" class="form-control rounded-pill" value="{{Auth::guard('admin')->user()->email}}" name='email' >
+            </div>
+          </div>
+       
+          <div class="col-md-9 mb-3">
+            <button type="button" class="btn btn-pill btn-gradient-primary" name='btn'><i class="div flaticon-tick-inside-circle"> Enregistrer </i></button>
+  
+          </div><br>
+          <div class="mb-3">
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-link">Nouveau Mot de pass
+              </a>
+        </div>
+          </div>
+        </div>
+
+
+
+
+      </form>
 @endsection
 
