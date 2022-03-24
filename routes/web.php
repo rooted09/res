@@ -9,14 +9,11 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\categorieController;
 use App\Http\Controllers\CommandeController;
 
-<<<<<<< HEAD
-=======
 
 
 
 
 
->>>>>>> 076c31f7be8b72b089674405edec2479f363311b
 // Admin Controllers
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\visitors\produit_vController;
@@ -35,10 +32,7 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index']);
-<<<<<<< HEAD
-=======
         Route::get('/dashboad', [DashboardController::class, 'index'])->name('home.home');
->>>>>>> 076c31f7be8b72b089674405edec2479f363311b
         // restaurant routes
 
         Route::prefix('restaurant')->name('restaurant.')->group(function () {
