@@ -9,10 +9,6 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\categorieController;
 use App\Http\Controllers\CommandeController;
 
-
-
-
-
 // Admin Controllers
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\visitors\produit_vController;
@@ -30,8 +26,9 @@ Route::prefix('admin')->group(function () {
 
 
     Route::middleware('auth:admin')->group(function () {
-
+        Route::get('/', [DashboardController::class, 'index']);
         // restaurant routes
+
         Route::prefix('restaurant')->name('restaurant.')->group(function () {
             Route::get('add', [RestaurantController::class, 'create'])->name('add');
             Route::post('store', [RestaurantController::class, 'store'])->name('insert');
@@ -63,7 +60,7 @@ Route::prefix('admin')->group(function () {
             Route::post('update/{id}', [ClientController::class, 'update'])->name('update');
             Route::get('delete/{id}', [ClientController::class, 'destroy'])->name('delete');
         });
-        // produits routes 
+        // produits routes
         Route::prefix('produit')->name('produit.')->group(function () {
             Route::get('add/{id}', [ProduitController::class, 'create'])->name('add');
             Route::post('store/{id}', [ProduitController::class, 'store'])->name('insert');
@@ -100,11 +97,11 @@ Route::prefix('admin')->group(function () {
 
 // begin visitors routes
 Route::middleware('auth')->group(function () {
-    // produitsCard routes 
+    // produitsCard routes
     Route::prefix('produit')->name('produitC.')->group(function () {
         Route::get('/{id}', [produit_vController::class, 'index'])->name('show');
     });
-    // client routes 
+    // client routes
 
     Route::prefix('auth')->name('authc.')->group(function () {
         Route::get('/', [Client_vController::class, 'index'])->name('show');

@@ -16,7 +16,9 @@
     <!-- fancy box  -->
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}">
     <!-- custom css  -->
+    <link rel="stylesheet" href="{{ asset('res/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styleB.css') }}">
 </head>
 
 <body class="body-fixed">
@@ -39,25 +41,59 @@
                             <ul class="menu food-nav-menu">
                                 <li><a href="#home">Home</a></li>
                                 <li><a href="#about">About</a></li>
-                                <li><a href="#menu">Menu</a></li>
+                                <li><a href="{{ route('list') }}">restaurants</a></li>
                                 <li><a href="#footer">Contact</a></li>
+
                             </ul>
+
                         </nav>
                         <nav style="background:transparent !important; color:white; padding-left: 300px" class="navbar navbar-expand-md navbar-light bg-white ">
                             <div class="container">
 
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                                    <span class="navbar-toggler-icon"></span>
+                                <button type = "button" class = "navbar-toggler">
                                 </button>
+                                <div class = "cart">
+                                  <button type = "button" id = "cart-btn">
+                                    <i class = "fas fa-shopping-cart" ></i>
+                                    <span id = "cart-count-info"></span>
+                                  </button>
+
+                                  <div class = "cart-container">
+                                    <div class = "cart-list">
+                                        <div class="card mt-3" style="background:#00a08300">
+                                            <div class="card-header" style="background:#00a082;">
+                                                <h5 class="text-light">Commandes Lits</h5>
+                                            </div>
+                                            <div class="card-body" id="panel" >
+                                                @foreach(Auth::user()->client->produit as $prod_client)
+                                                <div style="display: flex; padding-bottom: 10px">
+                                                   <div style="text-align: center">
+                                                    <p style="color: rgb(255, 255, 255)">{{$prod_client->name}} </p>
+                                                       </div>
+                                                       <div style="padding-left: 60% " >
+                                                        <img src="{{asset('products/'.$prod_client->image)}}" width="60%" height="60%" alt="...">
+                                                       </div>
+                                                         </div>
+                                               @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class = "cart-total">
+                                      <h3>Total: $</h3>
+                                      <span id = "cart-total-value"></span>
+                                    </div>
+                                  </div>
+                                </div>
 
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <!-- Left Side Of Navbar -->
-                                    <ul class="navbar-nav me-auto">
+                                    <ul class="menu food-nav-menu">
 
                                     </ul>
 
                                     <!-- Right Side Of Navbar -->
-                                    <ul class="navbar-nav ms-auto">
+                                    <ul class="menu food-nav-menu">
                                         <!-- Authentication Links -->
                                         @guest
                                             @if (Route::has('login'))
@@ -77,17 +113,24 @@
                                                     {{ Auth::user()->name }}
                                                 </a>
 
-                                                <div  class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="background: rgba(238, 238, 238, 0.986) ; border: none ; align-items: center ;cursor: pointer; >
-                                                    <a  " class="dropdown-item" href="{{ route('logout') }}"
-                                                       onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
-                                                        {{ __('Logout') }}
-                                                    </a>
+                                                <div  class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="background: rgba(238, 238, 238, 0.986) ; border: none ; align-items: center ;cursor: pointer">
+                                                        <a    href="{{ route('authc.show') }}">
+                                                            {{ __('Profile') }}
+                                                        </a>
 
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                        @csrf
-                                                    </form>
+
+                                                        <a  "  href="{{ route('logout') }}"
+                                                        onclick="event.preventDefault();
+                                                                      document.getElementById('logout-form').submit();">
+                                                         {{ __('Logout') }}
+                                                     </a>
+
+
+                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                         @csrf
+                                                     </form>
                                                 </div>
+
                                             </li>
                                         @endguest
                                     </ul>
@@ -909,8 +952,6 @@
 
 
 
-        </div>
-    </div>
 
 
 

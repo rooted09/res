@@ -15,7 +15,7 @@
     <section>
         <div class="container">
             <div class="user sgininbx">
-                <div class="imagBox"><img class="img1" src="{{ asset('img/nah.png') }}" alt="" srcset=""></div>
+                <div class="imagBox"><img  src="{{ asset('img/sgin.png') }}" alt="" srcset=""></div>
                 <div class="formBox">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -53,72 +53,11 @@
                             {{ __('Login') }}
                         </button>
 
-                        <p>Dont have an account ? <a class="link" onclick=" tg();">sign up</a></p>
+                        <p>Dont have an account ? <a class="link" href="{{ route('register') }}">sign up</a></p>
                     </form>
                 </div>
-                <div class="user sginUpbx">
+                <div class="user sginUpbx" id="tt">
 
-                    <div class="formBox">
-                        <form method="POST" action="{{ route('register') }}" id="from" >
-                            <h2>Create an account</h2>
-                                @csrf
-                                    <input id="name" type="text" class="input @error('user') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="user" autofocus placeholder="User">
-
-                                    @error('user')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-
-
-                                    <input id="name" type="text" class="input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="First Name">
-
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-
-
-                                <input id="name" type="text" class="input @error('prenom') is-invalid @enderror" name="prenom" value="{{ old('prenom') }}" required autocomplete="prenom" autofocus placeholder="Last Name">
-                                    @error('prenom')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                <input id="name" type="text" class="input @error('tele') is-invalid @enderror" name="tele" value="{{ old('tele') }}" required autocomplete="tele" autofocus placeholder="Tele">
-                                        @error('tele')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                        <input id="email" type="email" class="input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
-
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-
-                                    <input id="password" type="password" class="input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-
-                                    <input class="input" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="confirmation password">
-
-                                        <button type="submit" class="btn btn-primary" >
-                                                 {{ __('Register') }}
-                                        </button>
-
-                          <p>Already have an account ? <a class="link" onclick="tg();">sign in</a></p>
-                        </form>
-                    </div>
-                    <div class="imagBox"><img class="img2" src="{{ asset('img/yes.png') }}" alt="" srcset=""></div>
-                </div>
             </div>
             </section>
         <script>
