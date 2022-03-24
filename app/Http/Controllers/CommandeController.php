@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commande;
+use App\Models\Restaurant;
 use App\Http\Requests\StoreCommandeRequest;
 use App\Http\Requests\UpdateCommandeRequest;
 
@@ -14,11 +15,13 @@ class CommandeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $restaurant = Restaurant::all();
         $commandes =  Commande::all();
         return view('backoffice.commande.index',
         [
-            'commandes' => $commandes
+            'commandes' => $commandes,
+            'restaurants'=>$restaurant
         ]);
     }
 

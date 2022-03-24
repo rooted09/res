@@ -25,7 +25,7 @@
         <div class="form-row">
           <div class="col-md-7 mb-3 ">
             <td><input type="hidden" name="id" value="{{$restaurant->id}}" />
-              <label for="exampleFormControlInput1"  class="form-label font-truncate text-dark "><strong>Name</strong></label>
+            <label for="exampleFormControlInput1"  class="form-label font-truncate text-dark "><strong>Name</strong></label>
             <div class="input-group">
               <input type="text" class="form-control rounded-pill" name='name' id="name"value="{{$restaurant->name}}" >
             

@@ -56,7 +56,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="ms-card"> 
               <div class="ms-card-img">
-                <img src="{{asset('products/burger_1647783525.png')}}" alt="card_img">
+                <img src="{{asset('products/'.$product->image)}}" alt="card_img">
               </div>
               <div class="ms-card-body ">
                 <div class="wrapper-new2">

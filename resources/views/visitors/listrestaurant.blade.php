@@ -9,7 +9,8 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-            <a href="{{route('produitC.show',['id' => $rest->id])}}">   <h4 class="card-title">{{$rest->name}}</h4>
+            <a href="{{route('produitC.show',['id' => $rest->id])}}"> 
+                <h4 class="card-title">{{$rest->name}}</h4>
           <h5 class="card-title">{{$rest->adresse}}</h5>
           <p class="card-text">{{$rest->tele}}</p>
         </div>
